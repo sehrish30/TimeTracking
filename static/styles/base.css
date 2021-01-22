@@ -165,3 +165,22 @@ span {
   background-color: #91684a;
   color: #d8cea3;
 }
+
+.card--plan {
+  background-color: #493323;
+  color: #6f9eaf;
+}
+
+.media-content-text {
+  color: #e7818c !important;
+  font-family: "Indie Flower", cursive;
+  font-size: 2rem !important;
+}
+
+.card--main {
+  transform: all ease-in 0.5s;
+}
+
+.card--main:hover {
+  background-color: #a9294f;
+}
