@@ -1,0 +1,11 @@
+1)
+
+Create virtual env and activate it
+Install Django and create an emty project 
+Initialize the database and create a super user
+Start the development server and test. Also login the admin area
+Create a DJANGO app for the core vews(front page, privacy policy etc)
+Create the base template file
+Create the frontpage
+Create a very simple privacy policy and terms of agreements page
+Create a page for showing the different pricing plans

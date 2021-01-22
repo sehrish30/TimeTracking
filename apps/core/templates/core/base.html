@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Meta-->
+    <meta charset="utf-8" />
+
+    <!--Title-->
+    <title>{% block title %}{% endblock %}Minutos</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Bulma-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}" />
+  </head>
+
+  <body>
+    <!--Navbar-->
+    <div id="navbar-app">
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <a href="/" class="navbar-item">
+            <strong>Minutos</strong>
+          </a>
+        </div>
+
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a href="{% url 'plans' %}" class="navbar-item">Plans</a>
+
+            <div class="navbar-item">
+              <div class="buttons">
+                <a href="#" class="button signup--button">
+                  <strong id="signup--button--text">Sign Up</strong>
+                </a>
+                <a href="#" class="button login--button">Log in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!--End Navbar-->
+
+    <!--Main-->
+    <section class="section">{% block content %} {% endblock %}</section>
+    <!--End Main-->
+
+    <!--Footer-->
+    <footer class="footer">
+      <div class="columns is-multiline">
+        <div class="column is-4">
+          <h2 class="subtitle">Minutos</h2>
+        </div>
+
+        <div class="column is-offset-6 is-2">
+          <ul>
+            <li><a class="footer-link" href="#">Contact</a></li>
+            <li>
+              <a class="footer-link" href="{% url 'privacy' %}"
+                >Privacy policy</a
+              >
+            </li>
+            <li>
+              <a class="footer-link" href="{% url 'terms' %}"
+                >Terms of service</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="column is-12 has-text-centered">
+          <p>Copyright (c) 2020</p>
+        </div>
+      </div>
+    </footer>
+    <!--End of Footer-->
+  </body>
+</html>

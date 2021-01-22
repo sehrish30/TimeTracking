@@ -1,0 +1,167 @@
+.navbar {
+  background-color: #493323;
+}
+.navbar a {
+  color: #ffdf91 !important;
+}
+
+.signup--button {
+  background-color: #ffdf91;
+}
+#signup--button--text {
+  color: #493323;
+}
+
+.login--button,
+.login--button:hover {
+  background-color: #493323;
+  border-color: #ffdf91;
+}
+
+a:hover {
+  background-color: #91684a;
+}
+
+#hero--body {
+  background: rgba(234, 172, 127, 0.55);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+section {
+  background-color: #f6d887;
+}
+
+.hero--body--title {
+  font-family: "Indie Flower", cursive;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.title--main {
+  font-family: "Indie Flower", cursive;
+  font-size: 1.5rem;
+  color: #a9294f;
+}
+
+.blue {
+  color: #a9294f;
+}
+
+.btn-1,
+.btn-2 {
+  width: 300px;
+}
+/* Created by http://grohit.com/  */
+
+.btn-1 a,
+.btn-2 a {
+  text-decoration: none;
+  border: 2px solid #6f9eaf;
+  padding: 15px;
+  color: #ffba93;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+}
+
+span {
+  position: relative;
+  /* z-index coz when we put bg to before and after this span text will not be visible */
+  z-index: 3;
+}
+
+/* Button 1 styles */
+
+.btn-1 a::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  width: calc(100% + 6px);
+  /*100% plus double the times left values*/
+  height: calc(100% - 10px);
+  background-color: #ffffff;
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
+}
+
+.btn-1 a:hover::before,
+.btn-2 a:hover::before {
+  transform: scaleY(0);
+}
+
+.btn-1 a::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -5px;
+  width: calc(100% - 10px);
+  /*100% plus double the times left values*/
+  height: calc(100% + 10px);
+  background-color: #ffffff;
+  transition: all 0.5s ease-in-out;
+  transform: scaleX(1);
+}
+/* Created by http://grohit.com/  */
+
+.btn-1 a:hover::after,
+.btn-2 a:hover::after {
+  transform: scaleX(0);
+}
+
+/* Button 2 styles */
+
+.btn-2 a {
+  color: #ffffff;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-2 a:hover {
+  color: #6f9eaf;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-2 a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #6f9eaf;
+  transition: all 0.5s ease-in-out;
+  transform: scaleY(1);
+}
+
+.btn-2 a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #6f9eaf;
+  transition: all 0.5s ease-in-out;
+  transform: scaleX(1);
+}
+
+.footer-link,
+.footer-link:hover {
+  color: white !important;
+  background-color: transparent;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  background-color: #91684a;
+  color: #d8cea3;
+}

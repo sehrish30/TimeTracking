@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %} {% block title %}Home | {% endblock %}----------
+{% block content %} {% load static %}
+<section class="hero">
+  <div class="hero-body" id="hero--body">
+    <div class="container">
+      <h1 class="title">Welcome to <span class="blue">Minutos</span></h1>
+      <h2 class="subtitle hero--body--title">
+        Time tracking made <span class="blue">simple</span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-8 is-offset-2">
+      <div class="columns is-align-items mt-6">
+        <div class="column is-4 image">
+          <img src="{% static 'images/features-timetrack.svg' %}" />
+        </div>
+        <div class="column is-8 text">
+          <h2 class="subtitle">Time tracking</h2>
+          <p>Time tracking made simple.</p>
+        </div>
+      </div>
+
+      <div class="columns is-align-items mt-6">
+        <div class="column is-8 text">
+          <h2 class="subtitle">Time tracking</h2>
+          <p>Time tracking made simple.</p>
+        </div>
+        <div class="column is-4 image">
+          <img src="{% static 'images/features-tracktime1.svg' %}" />
+        </div>
+      </div>
+
+      <div class="columns is-align-items mt-6">
+        <div class="column is-4 image">
+          <img src="{% static 'images/features-tracktime2.svg' %}" />
+        </div>
+        <div class="column is-8 text">
+          <h2 class="subtitle">Time tracking</h2>
+          <p>Time tracking made simple.</p>
+        </div>
+      </div>
+
+      <div class="columns is-align-items-center mt-6">
+        <div class="column is-4 is-offset-4 has-text-centered">
+          <h2 class="subtitle title--main">Let's get started</h2>
+          <div class="btn-1">
+            <a href=""><span>Create a free account</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
