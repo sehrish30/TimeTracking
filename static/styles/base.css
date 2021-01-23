@@ -184,3 +184,8 @@ span {
 .card--main:hover {
   background-color: #a9294f;
 }
+
+.notify {
+  background-color: #6f9eaf !important;
+  color: #a9294f !important;
+}

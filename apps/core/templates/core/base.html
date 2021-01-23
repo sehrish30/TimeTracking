@@ -58,7 +58,13 @@
     <!--End Navbar-->
 
     <!--Main-->
-    <section class="section">{% block content %} {% endblock %}</section>
+    <section class="section">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="notification notify">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    {% block content %} {% endblock %}</section>
     <!--End Main-->
 
     <!--Footer-->
