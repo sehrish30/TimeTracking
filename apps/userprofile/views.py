@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -33,4 +34,8 @@ def signup(request):
         # form is available in the frontend
         # this form is for backend validation by Django
         return render(request, 'userprofile/signup.html', {'form': form})
+
+@login_required
+def myaccount(request):
+    return render(request, 'userprofile/myaccount.html')
 

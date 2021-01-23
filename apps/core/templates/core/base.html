@@ -37,10 +37,18 @@
 
             <div class="navbar-item">
               <div class="buttons">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'myaccount' %}" class="button signup--button">
+                  <strong id="signup--button--text">My Account</strong>
+                </a>
+                {% else %}
                 <a href="{% url 'signup' %}" class="button signup--button">
                   <strong id="signup--button--text">Sign Up</strong>
                 </a>
-                <a href="#" class="button login--button">Log in</a>
+                <a href="{% url 'login' %}" class="button login--button"
+                  >Log in</a
+                >
+                {% endif %}
               </div>
             </div>
           </div>
