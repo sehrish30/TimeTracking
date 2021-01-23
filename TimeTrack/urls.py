@@ -32,7 +32,8 @@ urlpatterns = [
     # Auth
     path('signup/', signup, name="signup"),
     path('login/', auth_views.LoginView.as_view(template_name="userprofile/login.html"),  name="login"),
-    path('myaccount/', myaccount, name="myaccount")
+    path('myaccount/', myaccount, name="myaccount"),
+    path('logout/', auth_views.LogoutView.as_view(), name="logout"),
 ]
 
 COMPRESS_PRECOMPILERS = (

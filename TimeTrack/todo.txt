@@ -17,3 +17,5 @@ Create a new Django app for user profiles
 Create a view and template for sign up
 Create template for login
 Create a simple "my account" page
+Logout
+Edit your profile
