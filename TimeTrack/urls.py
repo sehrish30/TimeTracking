@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from apps.core.views import frontpage, privacy, terms, plans
+from apps.userprofile.views import signup
 
 
 urlpatterns = [
@@ -25,6 +26,9 @@ urlpatterns = [
     path("terms/", terms, name="terms"),
     path('plans/', plans, name="plans"),
     path('admin/', admin.site.urls),
+
+    # Auth
+    path('signup/', signup, name="signup")
 ]
 
 COMPRESS_PRECOMPILERS = (

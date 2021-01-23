@@ -37,7 +37,7 @@
 
             <div class="navbar-item">
               <div class="buttons">
-                <a href="#" class="button signup--button">
+                <a href="{% url 'signup' %}" class="button signup--button">
                   <strong id="signup--button--text">Sign Up</strong>
                 </a>
                 <a href="#" class="button login--button">Log in</a>
@@ -82,5 +82,11 @@
       </div>
     </footer>
     <!--End of Footer-->
+
+    <!--Scripts-->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    {% block scripts %} {% endblock %}
+    <!--End of Scripts-->
   </body>
 </html>
