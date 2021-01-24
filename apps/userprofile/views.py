@@ -6,12 +6,15 @@ from django.contrib.auth.decorators import login_required
 
 # import User model
 from .models import Userprofile
-
+from apps.team.models import Team
 
 
 @login_required
 def myaccount(request):
-    return render(request, 'userprofile/myaccount.html')
+    teams = request.user.teams.exclude(
+        pk=request.user.userprofile.active_team_id)
+    return render(request, 'userprofile/myaccount.html', {'teams': teams})
+
 
 @login_required
 def edit_profile(request):
