@@ -187,5 +187,18 @@ span {
 
 .notify {
   background-color: #6f9eaf !important;
-  color: #a9294f !important;
+  color: #d8cea3 !important;
+}
+
+.link-button,
+.link-button:hover {
+  color: #6f9eaf !important;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #ffdf91;
+}
+
+.account-img {
+  height: 10rem;
+  width: 10rem;
 }

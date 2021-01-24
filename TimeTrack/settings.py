@@ -28,7 +28,7 @@ DEBUG = True
 # redirects when these events occur
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = 'myaccount'
-LOGOUT_URL = 'frontpage'
+LOGOUT_REDIRECT_URL = 'frontpage'
 
 ALLOWED_HOSTS = []
 
