@@ -58,13 +58,13 @@
 
           <hr>
 
-          <a href="#" class="button is-success">
+          <a href="{% url 'team:team' active_team.id %}" class="button is-success">
             Details
           </a>
-          {% if active_team == request.user %}
+          {% if active_team.created_by == request.user %}
           <a href="#" class="button is-info">INVITE USERS</a>
           {% endif %}
-          <a href="#" class="button is-info">Activate</a>
+        
 
       </div>
    </div>
@@ -74,15 +74,12 @@
       <div class="notification">
          <h3 class="is-size-5">
          {{ team.title }}
-         {% if team.created_by == request.user %} (Owner)
-         {% else %} (Member)
-         {% endif %}
           </h3>
           <h3 class="is-size-6">SHOW PLAN HERE</h3>
 
           <hr>
 
-          <a href="#" class="button is-success">
+          <a href="{% url 'team:team' team.id %}" class="button is-success">
             Details
           </a>
           <a href="#" class="button is-info">Activate</a>

@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %} {% comment %}
+<!--------------------------------->
+{% endcomment %} {% block title %} {{ team.title }} | {% endblock %} {% comment %}
+<!--------------------------------->
+{% endcomment %} {% block content %} {% comment %}
+<!--------------------------------->
+{% endcomment %}
+{% load static %}
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="#">Dashboard</a></li>
+    {% comment %} team.id is primary key sending to  teams page to show details {% endcomment %}
+    <li><a href="{% url 'team:team' team.id %}">{{ team.title }}</a></li>
+    <li>
+      <a class="is-active" href="{% url 'edit_profile' %}" aria-current="page"
+        >Edit Profile</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<div class="columns" id="team-app">
+  <div class="column is-4">
+    <h1 class="title">{{ team.title }}</h1>
+
+    <hr>
+
+    <h2 class="subtitle mt-6">Members</h2>
+
+    {% for member in team.members.all %}
+       <p>{{ member.username }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

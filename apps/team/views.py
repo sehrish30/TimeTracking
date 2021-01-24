@@ -1,9 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .models import Team
 # Views
+
+
+# members_in means checking logged user is a member of team
+@login_required
+def team(request, team_id):
+    team = get_object_or_404(
+        Team, pk=team_id, status=Team.ACTIVE, members__in=[request.user])
+    return render(request, 'team/team.html', {'team': team})
 
 
 @login_required
