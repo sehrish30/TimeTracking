@@ -1,0 +1,98 @@
+.team {
+  background: rgb(98, 149, 156);
+  background: linear-gradient(
+    324deg,
+    rgba(98, 149, 156, 1) 0%,
+    rgba(193, 146, 119, 1) 100%
+  );
+  color: white;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.not-activated-team {
+  background: rgb(98, 149, 156);
+  background: radial-gradient(
+    circle,
+    rgba(98, 149, 156, 1) 0%,
+    rgba(227, 208, 185, 0.3368697820925245) 100%
+  );
+  color: white;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.add-team {
+  background-color: #a9294f;
+  color: white;
+  transition: all 1s ease-in;
+  -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
+  -ms-transition: all 1s ease-in;
+  -o-transition: all 1s ease-in;
+}
+
+.add-team:hover {
+  color: #a9294f;
+  background-color: white;
+}
+
+.fas,
+.far {
+  padding-right: 0.3rem;
+}
+
+.team-title {
+  color: #ae3e48;
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+  font-size: 1.5rem;
+}
+
+ol {
+  max-width: 350px;
+  counter-reset: my-awesome-counter;
+  list-style: none;
+  padding-left: 40px;
+}
+ol li {
+  margin: 0 0 0.5rem 0;
+  counter-increment: my-awesome-counter;
+  position: relative;
+}
+ol li::before {
+  content: counter(my-awesome-counter);
+  color: #f6d887;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  --size: 32px;
+  left: calc(-1 * var(--size) - 10px);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  top: 0;
+  transform: rotate(-10deg);
+  background: #c7753d;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 0 #f6d887;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+}
+
+li {
+  padding: 0.3rem 0;
+}

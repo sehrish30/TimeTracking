@@ -20,16 +20,21 @@
 </nav>
 
 <div class="columns is-multiline" id="team-app">
-  <div class="column is-4">
+  <div class="column is-8">
     <h1 class="title">{{ team.title }}</h1>
 
     <hr>
 
-    <h2 class="subtitle mt-6">Members</h2>
-
+    <h2 class="subtitle mt-6"> <i class="fas fa-user-friends"></i>Members</h2>
+ <ol type="1">
     {% for member in team.members.all %}
-       <p>{{ member.username }}</p>
+   
+	<li>{{ member.username }}</li>
     {% endfor %}
+    </ol>
+  </div>
+  <div class="column is-4">
+     <img src="{% static 'images/9814.jpg' %}"/>
   </div>
 </div>
 
@@ -39,7 +44,7 @@
     <hr>
 
     <h3 class="subtitle">Owner actions</h3>
-    <a href="{% url 'team:edit' %}" class="button is-warning">Edit team</a> 
+    <a href="{% url 'team:edit' %}" class="button is-warning"><i class="far fa-edit"></i>Edit team</a> 
  </div>
 {% endif %}
 

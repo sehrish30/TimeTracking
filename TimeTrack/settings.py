@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.userprofile',
     'apps.team',
-    
+
     'sass_processor',
+    'fontawesome_5'
 ]
 
 MIDDLEWARE = [

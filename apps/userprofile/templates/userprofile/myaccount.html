@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %} {% comment %}
 <!------------------------------->{% endcomment %} {% block title %} Sign up |
-{% endblock %} {% comment %}
+{% endblock %} {% load static %}{% comment %}
+
 <!--------------------------------->
 {% endcomment %} {% block content %} {% load static %}
 
@@ -25,8 +26,8 @@
       </div>
     </div>
     <div class="pt-4">
-      <a href="{% url 'edit_profile' %}" class="button is-info">Edit profile</a>
-      <a href="{% url 'logout' %}" class="button is-danger">Log out</a>
+      <a href="{% url 'edit_profile' %}" class="button is-info"> <i class="fas fa-marker"></i>Edit profile</a>
+      <a href="{% url 'logout' %}" class="button is-danger is-outlined">Log out</a>
     </div>
   </div>
   <div class="picture colum is-4">
@@ -38,16 +39,18 @@
 
 <div class="columns">
    <div class="column is-12">
-      <h2 class="subtitle">Teams</h2>
+      <h2 class="subtitle team-title">Teams</h2>
 
-      <a href="{% url 'team:add' %}" class="button is-success">Add Team</a>
+      <a href="{% url 'team:add' %}" class="button add-team is-medium is-fullwidth">
+      <i class="fas fa-plus"></i>
+      Add Team</a>
    </div>
 </div>
 
-<div class="columns">
+<div class="columns ">
     {% if active_team %}
-       <div class="column is-4">
-      <div class="notification has-background-success-light">
+       <div class="column is-4 ">
+      <div class="notification has-background-success-light team">
          <h3 class="is-size-5">
          {{ active_team.title }}
          {% if active_team.created_by == request.user %} (Owner)
@@ -58,11 +61,15 @@
 
           <hr>
 
-          <a href="{% url 'team:team' active_team.id %}" class="button is-success">
+          <a href="{% url 'team:team' active_team.id %}" class="button is-info is-light">
+           <i class="fas fa-info-circle"></i>
             Details
           </a>
           {% if active_team.created_by == request.user %}
-          <a href="#" class="button is-info">INVITE USERS</a>
+          <a href="#" class="button is-info">
+              <i class="fas fa-retweet"></i>
+              INVITE USERS
+          </a>
           {% endif %}
         
 
@@ -71,17 +78,21 @@
     {% endif %}
    {% for team in teams %}
    <div class="column is-4">
-      <div class="notification">
+      <div class="notification not-activated-team">
          <h3 class="is-size-5">
          {{ team.title }}
           </h3>
           <h3 class="is-size-6">SHOW PLAN HERE</h3>
 
           <hr>
-          <a href="{% url 'team:team' team.id %}" class="button is-success">
+          <a href="{% url 'team:team' team.id %}" class="button is-info is-light">
+           <i class="fas fa-info-circle"></i>
             Details
           </a>
-          <a href="{% url 'team:activate_team' team.id %}" class="button is-info">Activate</a>
+          <a href="{% url 'team:activate_team' team.id %}" class="button is-info">
+             <i class="fas fa-hand-sparkles"></i>
+             Activate
+          </a>
 
       </div>
    </div>
