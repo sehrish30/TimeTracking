@@ -19,7 +19,7 @@
   </ul>
 </nav>
 
-<div class="columns" id="team-app">
+<div class="columns is-multiline" id="team-app">
   <div class="column is-4">
     <h1 class="title">{{ team.title }}</h1>
 
@@ -32,5 +32,15 @@
     {% endfor %}
   </div>
 </div>
+
+
+{%if team.created_by == request.user %}
+ <div class="column is-4">
+    <hr>
+
+    <h3 class="subtitle">Owner actions</h3>
+    <a href="{% url 'team:edit' %}" class="button is-warning">Edit team</a> 
+ </div>
+{% endif %}
 
 {% endblock %}

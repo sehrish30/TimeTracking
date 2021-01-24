@@ -42,7 +42,10 @@
               <div class="buttons">
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'myaccount' %}" class="button signup--button">
-                  <strong id="signup--button--text">{% firstof request.user.get_full_name request.user.username %}</strong>
+                  <strong id="signup--button--text">{% firstof request.user.get_full_name request.user.username %}
+                  {% if active_team %}({{ active_team.title  }}){%endif%}
+                  </strong>
+                  
                 </a>
                 {% else %}
                 <a href="{% url 'signup' %}" class="button signup--button">

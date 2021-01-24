@@ -78,11 +78,10 @@
           <h3 class="is-size-6">SHOW PLAN HERE</h3>
 
           <hr>
-
           <a href="{% url 'team:team' team.id %}" class="button is-success">
             Details
           </a>
-          <a href="#" class="button is-info">Activate</a>
+          <a href="{% url 'team:activate_team' team.id %}" class="button is-info">Activate</a>
 
       </div>
    </div>

@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %} {% comment %}
 <!--------------------------------->
-{% endcomment %} {% block title %} Add Team | {% endblock %} {% comment %}
+{% endcomment %} {% block title %} Edit Team | {% endblock %} {% comment %}
 <!--------------------------------->
 {% endcomment %} {% block content %} {% comment %}
 <!--------------------------------->
@@ -9,7 +9,7 @@
 <nav class="breadcrumb" aria-label="breadcrumbs">
   <ul>
     <li><a href="#">Dashboard</a></li>
-    <li><a href="{% url 'team:add' %}">Add team</a></li>
+    <li><a href="{% url 'team:edit' %}">Edit team</a></li>
     <li>
       <a class="is-active" href="{% url 'edit_profile' %}" aria-current="page"
         >Edit Profile</a
@@ -20,7 +20,7 @@
 
 <div class="columns" id="team-app">
   <div class="column is-4">
-    <h1 class="title">Add team</h1>
+    <h1 class="title">Edit team</h1>
 
     <form method="post" action="." @submit="validateForm">
       {% csrf_token %}
