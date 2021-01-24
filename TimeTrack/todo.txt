@@ -19,3 +19,9 @@ Create template for login
 Create a simple "my account" page
 Logout
 Edit your profile
+
+3) 
+
+Fix
+Create a new Django app for teams
+Create a view and template for adding teams
