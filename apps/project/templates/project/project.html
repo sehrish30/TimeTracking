@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% block title %}{{ project.title }} | {% endblock %}
 
-{% block content %}
+{% block content %}{% load static %}
 <div id="project-app">
 
   <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -38,32 +38,28 @@
   </div>
 
   {% if not tasks_todo and not tasks_done %}
-         <div class="columns">
-            <div class="column is-3">
-               <div class="notification">
-                  <p>No tasks yet...</p>
-               </div>
-            </div>
-         </div>
+         <div class="column is-3">
+        <div class="">
+         <p class="nothing">No tasks found...</p>
+          <img class="account-img" src="{% static 'images/empty.svg' %}" />
+        </div>
+      </div>
      {% endif %}
 
   <div class="columns is-multiline">
      {% if tasks_todo %}
         <div class="column is-12">
-           <h2 class="is-size-4">Todo</h2>
+           <h2 class="is-size-4 nothing underline">Todo</h2>
         </div>
 
         {% for task in tasks_todo %}
-          <div class="columns is-4">
-            <div class="notification">
+          <div class="column is-3 p-4  ml-2 team">    
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
 
               <hr>
-
               <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
-            </div>
           </div>
         {% endfor %}
      {% endif %}

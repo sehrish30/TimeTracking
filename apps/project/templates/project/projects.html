@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% block title %}Projects | {% endblock %}
 
-{% block content %}
+{% block content %}{% load static %}
 <div id="projects-app">
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
@@ -18,7 +18,7 @@
     <div class="column is-4">
       <h1 class="title">Projects</h1>
       <a @click="showAddProjectModal = !showAddProjectModal" 
-        class="button is-info">
+        class="button add-team is-fullwidth">
         Add project
       </a>
     </div>
@@ -26,8 +26,8 @@
 
   <div class="columns">
     {% for project in projects %}
-    <div class="column is-3">
-      <div class="notification">
+    <div class="column is-3 team">
+      <div class="">
          <h2 class="is-size-5">{{ project.title }}</h2>
          <p class="is-size-7">Registered time: {{ project.registered_time }}</p>
          <p class="is-size-7">Tasks: {{ project.num_tasks_todo }}</p>
@@ -40,10 +40,14 @@
          </a>
       </div>
     </div>
+
+    
+ 
       {% empty %}
-      <div class="column is-3">
-        <div class="notification">
-          No projects yet...
+      <div class="column is-2">
+        <div class="">
+         <p class="nothing">No projects found...</p>
+          <img class="account-img" src="{% static 'images/empty.svg' %}" />
         </div>
       </div>
     {% endfor %}

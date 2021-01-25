@@ -96,3 +96,15 @@ ol li::before {
 li {
   padding: 0.3rem 0;
 }
+
+.nothing {
+  font-family: "Indie Flower", cursive;
+  color: #a9294f;
+  font-size: 1.2rem;
+}
+
+.underline {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  -moz-text-decoration-style: wavy;
+}
