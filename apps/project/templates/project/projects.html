@@ -56,10 +56,10 @@
   <div class="modal" :class="{'is-active': showAddProjectModal}">
      <div class="modal-background"></div>
 
-     <form method="post" action="." @submit="validateForm">
+     <form  method="post" action="." @submit="validateForm">
         {% csrf_token %}
 
-        <div class="modal-card">
+        <div class="modal-card modal-form">
           <div class="modal-card-head">
              <p class="modal-card-title">
                Add Project
@@ -80,7 +80,7 @@
           </div>
 
           <footer class="modal-card-foot">
-             <button class="button is-info is-outlined">Submit</button>
+             <button class="button is-info">Submit</button>
              <button class="button" @click="showAddProjectModal = !showAddProjectModal">Cancel</button>
           </footer>
         </div>

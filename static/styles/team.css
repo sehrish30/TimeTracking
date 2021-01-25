@@ -108,3 +108,18 @@ li {
   text-decoration-style: wavy;
   -moz-text-decoration-style: wavy;
 }
+
+.modal-form,
+.modal-card,
+.modal-card-body,
+.modal-card-head,
+.modal-card-foot {
+  background: rgb(255, 157, 86);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 157, 86, 1) 0%,
+    rgba(246, 216, 135, 1) 49%,
+    rgba(234, 172, 127, 1) 100%
+  ) !important;
+  color: #a9294f;
+}
