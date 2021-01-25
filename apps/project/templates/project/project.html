@@ -7,12 +7,12 @@
     <ul>
       <li><a href="#">Dashboard</a></li>
       <li>
-        <a class="is-active" href="{% url 'project:projects' %}" aria-current="page"
+        <a  href="{% url 'project:projects' %}"
           >Projects</a
         >
       </li>
-         <li>
-        <a class="is-active" href="{% url 'project:project' project.id %}" aria-current="page"
+         <li class="is-active">
+        <a  href="{% url 'project:project' project.id %}" aria-current="page"
           >{{ project.title }}</a
         >
       </li>
@@ -22,6 +22,11 @@
   <div class="columns">
      <div class="column">
        <h1 class="title">{{ project.title }}</h1>
+
+       <a href="{% url 'project:edit_project' project.id %}" class="button is-warning">
+          <i class="far fa-edit"></i>
+          Edit project
+        </a>
      </div>
   </div>
 <div>
