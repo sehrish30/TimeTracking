@@ -1,0 +1,15 @@
+asgiref==3.3.1
+Django==3.1.5
+django-appconf==1.0.4
+django-compressor==2.4
+django-fontawesome==1.0
+django-fontawesome-5==1.0.18
+django-libsass==0.8
+django-sass-processor==0.8.2
+libsass==0.20.1
+pytz==2020.5
+PyYAML==5.4.1
+rcssmin==1.0.6
+rjsmin==1.1.0
+six==1.15.0
+sqlparse==0.4.1
