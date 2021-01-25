@@ -29,5 +29,57 @@
         </a>
      </div>
   </div>
+
+  {% if not tasks_todo and not tasks_done %}
+         <div class="columns">
+            <div class="column is-3">
+               <div class="notification">
+                  <p>No tasks yet...</p>
+               </div>
+            </div>
+         </div>
+     {% endif %}
+
+  <div class="columns is-multiline">
+     {% if tasks_todo %}
+        <div class="column is-12">
+           <h2 class="is-size-4">Todo</h2>
+        </div>
+
+        {% for task in tasks_todo %}
+          <div class="columns is-4">
+            <div class="notification">
+              <h3 class="is-size-5">
+                {{ task.title }}
+              </h3>
+
+              <hr>
+
+              <a class="button is-info">Details</a>
+            </div>
+          </div>
+        {% endfor %}
+     {% endif %}
+
+     {% if tasks_done %}
+        <div class="column is-12">
+           <h2 class="is-size-4">Done</h2>
+        </div>
+
+        {% for task in tasks_done %}
+          <div class="columns is-4">
+            <div class="notification">
+              <h3 class="is-size-5">
+                {{ task.title }}
+              </h3>
+
+              <hr>
+
+              <a class="button is-info">Details</a>
+            </div>
+          </div>
+        {% endfor %}
+     {% endif %}
+  </div>
 <div>
 {% endblock %}

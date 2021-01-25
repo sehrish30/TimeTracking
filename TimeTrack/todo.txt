@@ -38,3 +38,4 @@ Show a list of projects (Modal for adding project)
 Show detail view of a project
 Make it possible to to edit projects
 Create models for tasks
+Show a list of tasks
