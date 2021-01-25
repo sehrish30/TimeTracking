@@ -11,8 +11,9 @@ Create a very simple privacy policy and terms of agreements page
 Create a page for showing the different pricing plans
 
 
-2) Authentication
+2) 
 
+Authentication
 Create a new Django app for user profiles
 Create a view and template for sign up
 Create template for login
@@ -39,3 +40,4 @@ Show detail view of a project
 Make it possible to to edit projects
 Create models for tasks
 Show a list of tasks
+Make it possible to add tasks
