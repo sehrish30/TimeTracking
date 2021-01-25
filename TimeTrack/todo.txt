@@ -33,3 +33,5 @@ Make it possible to edit a team
 4)
 
 Fix (Show userprofile in admin area)
+Create new app and model for project
+Show a list of projects (Modal for adding project)

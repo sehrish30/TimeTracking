@@ -202,3 +202,21 @@ span {
   height: 10rem;
   width: 10rem;
 }
+
+.navbar-item {
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+.navbar-item:hover {
+  background-color: #f6d887 !important;
+  color: #493323 !important;
+  transform: skew(20deg);
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -ms-transform: skew(20deg);
+  -o-transform: skew(20deg);
+}

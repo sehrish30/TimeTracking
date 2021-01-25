@@ -27,6 +27,9 @@ urlpatterns = [
     path('plans/', plans, name="plans"),
     path('admin/', admin.site.urls),
 
+    # Dashboard
+    path('projects/', include('apps.project.urls')),
+
     # Auth
     path('signup/', signup, name="signup"),
     path('login/', auth_views.LoginView.as_view(template_name="core/login.html"),  name="login"),
