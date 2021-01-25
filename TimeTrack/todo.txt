@@ -41,3 +41,5 @@ Make it possible to to edit projects
 Create models for tasks
 Show a list of tasks
 Make it possible to add tasks
+Show detail view of a task
+Make it possible to edit tasks

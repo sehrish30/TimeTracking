@@ -34,10 +34,11 @@ def project(request, project_id):
     project = get_object_or_404(Project, team=team, pk=project_id)
 
     if request.method == 'POST':
-        title = request.GET.get('title')
+        title = request.POST.get('title')
 
         if title:
-            task = Task.objects.create(team=team, project=project, title=title)
+            task = Task.objects.create(
+                team=team, project=project, title=title, created_by=request.user)
             messages.info(request, 'Task Added')
 
             # redirect the user back to product page
@@ -67,3 +68,13 @@ def edit_project(request, project_id):
             return redirect('project:project', project_id=project.id)
 
     return render(request, 'project/edit_project.html', {'team': team, 'project': project})
+
+
+@login_required
+def task(request, project_id, task_id):
+    team = get_object_or_404(
+        Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE)
+    project = get_object_or_404(Project, team=team, pk=project_id)
+    task = get_object_or_404(Task, pk=task_id, team=team)
+
+    return render(request, 'project/task.html', {'team': team, 'project': project, 'task': task})

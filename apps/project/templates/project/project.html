@@ -62,7 +62,7 @@
 
               <hr>
 
-              <a class="button is-info">Details</a>
+              <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
             </div>
           </div>
         {% endfor %}
@@ -82,7 +82,7 @@
 
               <hr>
 
-              <a class="button is-info">Details</a>
+              <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
             </div>
           </div>
         {% endfor %}
