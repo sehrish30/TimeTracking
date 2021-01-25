@@ -78,3 +78,24 @@ def task(request, project_id, task_id):
     task = get_object_or_404(Task, pk=task_id, team=team)
 
     return render(request, 'project/task.html', {'team': team, 'project': project, 'task': task})
+
+
+@login_required
+def edit_task(request, project_id, task_id):
+    team = get_object_or_404(
+        Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE)
+    project = get_object_or_404(Project, team=team, pk=project_id)
+    task = get_object_or_404(Task, pk=task_id, team=team)
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+
+        if title:
+            task.title = title
+            task.save()
+
+            messages.info(request, 'Changes saved!')
+
+            return redirect('project:task', project_id=project.id, task_id=task.id)
+
+    return render(request, 'project/edit_task.html', {'team': team, 'project': project, 'task': task})
