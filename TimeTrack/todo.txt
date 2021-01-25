@@ -29,3 +29,7 @@ Show your teams on the account page
 Show your teams on the account page
 Make it possible to view a team
 Make it possible to edit a team
+
+4)
+
+Fix (Show userprofile in admin area)
