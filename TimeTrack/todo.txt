@@ -62,3 +62,5 @@ Import font awesome and add icons
 
 Create a nw app for Dashboard
 Create a new urls file for the dashboard
+Show what is I have done today and make it possible to go back in time
+Show what I have done this month and make it possible to go back in time

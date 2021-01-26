@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Dashboard
-    path('dashboard/', include('apps.dashboard.urls'))
+    path('dashboard/', include('apps.dashboard.urls')),
 
     # Auth
     path('signup/', signup, name="signup"),
