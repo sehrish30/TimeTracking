@@ -56,3 +56,4 @@ Show entries on a task
 Show total time on the task list
 Make it possible to edit an entry
 Make it possible to delete an entry
+Import font awesome and add icons

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.project',
     'apps.userprofile',
     'apps.team',
+    'apps.dashboard'
 
     'sass_processor',
     'fontawesome_5'

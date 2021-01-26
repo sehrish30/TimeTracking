@@ -24,14 +24,16 @@
   </nav>
 
   <div class="columns">
-     <div class="column">
+     <div class="column is-6">
        <h1 class="title">{{ task.title }}({{ task.get_status_display }})</h1>
 
        <a href="{% url 'project:edit_task' project.id task.id %}" class="button is_warning">
+          <i class="fas fa-edit"></i>
           Edit Task
        </a>
 
-       <h2 class="subtitle mt-6">Register time</h2>
+    <div class="entry-form">
+       <h2 class="subtitle mt-6 register-time">Register time</h2>
 
        <form method="post" action=".">
          {% csrf_token %}
@@ -60,7 +62,7 @@
             </div>    
          </div>
          
-         <div class="field">
+         <div class="field pl-0 column is-3">
               <label>Date</label>
               <div class="control"> 
                  <input
@@ -76,10 +78,14 @@
 
             <div class="field">
               <div class="control">
-                 <button class="button is-info">Submit</button>
+                 <button class="button is-info"><i class="fas fa-scroll icon-new"></i>Create Entry</button>
               </div>
             </div>
        </form>
+       </div>
+     </div>
+     <div class="column is-5">
+         <img class="calendar-img" src="{% static 'images/bg-4.svg' %}" />
      </div>
   </div>
 
@@ -90,12 +96,12 @@
 
        {% comment %} Entries Table {% endcomment %}
        {% if task.entries.all %}
-          <table class="table is-fullwidth" style="text-align: left;">
+          <table class="table team is-fullwidth" style="text-align: left;">
              <thead>
                 <tr>
                   <th>Date</th>
                   <th>User</th>
-                  <th>Time</th>
+                  <th>Time(minutes)</th>
                   <th></th>
                 </tr>
              </thead>

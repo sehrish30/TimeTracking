@@ -57,9 +57,9 @@
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
-              <p>Registered time: {{ task.registered_time }}</p>
+              <p><i class="icon-new fas fa-clock"></i>Registered time: {{ task.registered_time }}</p>
               <hr>
-              <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
+              <a href="{% url 'project:task' project.id task.id %}" class="button is-info"><i class="icon-new fas fa-info-circle"></i>Details</a>
           </div>
         {% endfor %}
      {% endif %}
@@ -75,10 +75,12 @@
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
-               <p>Registered time: {{ task.registered_time }}</p>
+               <p><i class="icon-new fas fa-clock"></i>Registered time: {{ task.registered_time }}</p>
               <hr>
 
-              <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
+              <a href="{% url 'project:task' project.id task.id %}" class="button is-info">
+                 <i class="icon-new fas fa-info-circle"></i>Details
+              </a>
             </div>
           </div>
         {% endfor %}

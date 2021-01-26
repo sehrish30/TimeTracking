@@ -103,6 +103,13 @@ li {
   font-size: 1.2rem;
 }
 
+.register-time {
+  font-family: "Indie Flower", cursive;
+  color: #a9294f;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
 .underline {
   text-decoration: underline;
   text-decoration-style: wavy;
@@ -122,4 +129,58 @@ li {
     rgba(234, 172, 127, 1) 100%
   ) !important;
   color: #a9294f;
+}
+
+.user-icon {
+  color: #493323;
+}
+
+.icon-new {
+  margin-right: 10px;
+}
+
+.register_time {
+  margin-top: 1rem;
+}
+
+.register_heading {
+  color: #a9294f;
+  font-weight: bold;
+}
+
+th {
+  color: #a9294f !important;
+}
+
+td {
+  color: #fff3e6;
+}
+
+.calendar-img {
+  width: 45vw;
+  height: 45vh;
+}
+
+.entry-form {
+  background: rgb(98, 149, 156);
+  background: linear-gradient(
+    324deg,
+    rgba(98, 149, 156, 1) 0%,
+    rgba(193, 146, 119, 1) 100%
+  );
+  color: white;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  padding: 1rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.select select:not([multiple]),
+.input,
+.textarea {
+  background-color: #493323 !important;
+  color: #ffdf91;
 }

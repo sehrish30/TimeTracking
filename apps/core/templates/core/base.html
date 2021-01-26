@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="{% static 'styles/base.css' %}" />
     <link rel="stylesheet" href="{% static 'styles/team.css' %}" />
 
-    <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/4764f4dcde.js" crossorigin="anonymous"></script>
+
     
   </head>
 
@@ -49,7 +48,9 @@
             <div class="navbar-item">
               <div class="buttons">
                 {% if request.user.is_authenticated %}
+                
                 <a href="{% url 'myaccount' %}" class="button signup--button">
+                <span class="icon user-icon" ><i class="fas fa-user"></i></span>
                   <strong id="signup--button--text">{% firstof request.user.get_full_name request.user.username %}
                   {% if active_team %}({{ active_team.title  }}){%endif%}
                   </strong>
@@ -111,6 +112,9 @@
     </footer>
     <!--End of Footer-->
 
+        <!-- Font Awesome -->
+        {% comment %} <sclript src="https://kit.fontawesome.com/4764f4dcde.js" crossorigin="anonymous"></sclript> {% endcomment %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.js"></script>
     <!--Scripts-->
     <script src="https://unpkg.com/vue@next"></script>
 
