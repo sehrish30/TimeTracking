@@ -32,7 +32,7 @@ class Project(models.Model):
 
     # get all tasks
     def num_tasks_todo(self):
-        return 0  # self.tasks.filter(status = Task.TODO).count()
+        return self.tasks.filter(status=Task.TODO).count()
 
 
 class Task(models.Model):
