@@ -51,3 +51,4 @@ Show the status together with the task list
 Show number of tasks in the project list
 Create a new model for entries
 Make it possible to register entries on a task
+Fix the registeredt time functions for project and task

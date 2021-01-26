@@ -28,7 +28,7 @@ class Project(models.Model):
 
     # get all the time on certain project
     def registered_time(self):
-        return 0
+        return sum(entry.minutes for entry in self.entries.all())
 
     # get all tasks
     def num_tasks_todo(self):
@@ -68,7 +68,7 @@ class Task(models.Model):
         return self.title
 
     def registered_time(self):
-        return 0
+        return sum(entry.minutes for entry in self.entries.all())
 
 
 class Entry(models.Model):
