@@ -49,3 +49,4 @@ Make it possible to edit tasks
 Add status to the task
 Show the status together with the task list
 Show number of tasks in the project list
+Create a new model for entries

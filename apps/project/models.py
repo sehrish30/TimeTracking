@@ -69,3 +69,26 @@ class Task(models.Model):
 
     def registered_time(self):
         return 0
+
+
+class Entry(models.Model):
+    team = models.ForeignKey(Team, related_name='entries',
+                             on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project, related_name='entries', on_delete=models.CASCADE)
+    tasks = models.ForeignKey(
+        Task, related_name="entries", on_delete=models.CASCADE)
+    minutes = models.IntegerField(default=0)
+    is_tracked = models.BooleanField(default=False)
+    created_by = models.ForeignKey(
+        User, related_name='entries', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        if self.task:
+            return f'{self.task.title} - {self.created_at}'
+        
+        return f'{self.created_at}'
