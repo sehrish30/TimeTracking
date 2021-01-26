@@ -89,9 +89,11 @@ def edit_task(request, project_id, task_id):
 
     if request.method == 'POST':
         title = request.POST.get('title')
+        status = request.POST.get('status')
 
         if title:
             task.title = title
+            task.status = status
             task.save()
 
             messages.info(request, 'Changes saved!')
