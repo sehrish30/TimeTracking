@@ -6,6 +6,7 @@ from apps.project.models import Entry
 
 # utility functions
 
+
 def get_time_for_user_and_date(team, user, date):
     entries = Entry.objects.filter(team=team,
                                    created_by=user,
@@ -33,6 +34,7 @@ def get_time_for_user_and_project_and_month(team, project, user, month):
                                    created_by=user, created_at__year=month.year,
                                    created_at__month=month.month,
                                    is_tracked=False)
+    print(Entry.created_at)
     return sum(entry.minutes for entry in entries)
 
 

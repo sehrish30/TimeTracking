@@ -49,6 +49,54 @@
        <a href="?num_days={{ num_days|add:'-1'}}" class="mt-4">Next</a>
      {% endif %}
    </div>
+
+    <div class="column is-6">
+     <div class="team">
+        
+     <h2 class="subtitle">Your time {% if user_num_months is 0 %}this month {% else %} {{ user_month|date:"Y-m" }}{% endif %}</h2>
+
+          {% if time_for_user_and_month %}
+       <table class="table is-fullwidth" style="text-align: left">
+          <thead>
+            <tr> 
+              <td>Project</td>
+              <td>Time</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for project in all_projects %}
+                {% if project.time_for_user_and_project_and_month > 0 %}
+                <tr>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.time_for_user_and_project_and_month }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td >Total</td>
+              <td>{{ time_for_user_and_month }}</td>
+            </tr>
+          </tfoot>
+       </table>
+       {% else %}
+      <div class="column is-6">
+        <div class="">
+         <p class="nothing">No enties today...</p>
+          <img class="account-img" src="{% static 'images/empty.svg' %}" />
+        </div>
+      </div>
+     {% endif %}
+
+        <a href="?user_num_months={{user_num_months|add:'1'}}" class="mt-4">Previous</a>
+     {% if user_num_months > 0 %}
+       <a href="?user_num_months={{ user_num_months|add:'-1'}}" class="mt-4">Next</a>
+     {% endif %}
+     </div>
+    </div>
  </div>
 
  <div class="columns is-multiline">
