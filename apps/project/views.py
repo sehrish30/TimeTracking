@@ -112,3 +112,40 @@ def edit_task(request, project_id, task_id):
             return redirect('project:task', project_id=project.id, task_id=task.id)
 
     return render(request, 'project/edit_task.html', {'team': team, 'project': project, 'task': task})
+
+
+@login_required
+def edit_entry(request, project_id, task_id, entry_id):
+    team = get_object_or_404(
+        Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE)
+    project = get_object_or_404(Project, team=team, pk=project_id)
+    task = get_object_or_404(Task, pk=task_id, team=team)
+    entry = get_object_or_404(Entry, pk=entry_id, team=team)
+
+    if request.method == 'POST':
+        hours = int(request.POST.get('hours', 0))
+        minutes = int(request.POST.get('minutes', 0))
+        date = '%s %s' % (request.POST.get('date'), datetime.now().time())
+
+        entry.created_at = date
+        entry.minutes = (hours * 60) + minutes
+        entry.save()
+
+        messages.info(request, 'Entry edited successfully')
+
+        return redirect('project:task', project_id=project.id, task_id=task.id)
+
+   # it will get hours rest will go to minutesS
+    hours, minutes = divmod(entry.minutes, 60)
+
+   # all of this is available in frontend
+    context = {
+        'team': team,
+        'project': project,
+        'task': task,
+        'entry': entry,
+        'hours': hours,
+        'minutes': minutes
+    }
+
+    return render(request, 'project/edit_entry.html', context)
