@@ -54,3 +54,5 @@ Make it possible to register entries on a task
 Fix the registered time functions for project and task
 Show entries on a task
 Show total time on the task list
+Make it possible to edit an entry
+Make it possible to delete an entry

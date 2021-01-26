@@ -149,3 +149,17 @@ def edit_entry(request, project_id, task_id, entry_id):
     }
 
     return render(request, 'project/edit_entry.html', context)
+
+
+@login_required
+def delete_entry(request, project_id, task_id, entry_id):
+    team = get_object_or_404(
+        Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE)
+    project = get_object_or_404(Project, team=team, pk=project_id)
+    task = get_object_or_404(Task, pk=task_id, team=team)
+    entry = get_object_or_404(Entry, pk=entry_id, team=team)
+    entry.delete()
+
+    messages.info(request, 'The entry was deleted')
+
+    return redirect('project:task', project_id=project.id, task_id=task.id)
