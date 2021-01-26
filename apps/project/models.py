@@ -76,13 +76,13 @@ class Entry(models.Model):
                              on_delete=models.CASCADE)
     project = models.ForeignKey(
         Project, related_name='entries', on_delete=models.CASCADE)
-    tasks = models.ForeignKey(
+    task = models.ForeignKey(
         Task, related_name="entries", on_delete=models.CASCADE)
     minutes = models.IntegerField(default=0)
     is_tracked = models.BooleanField(default=False)
     created_by = models.ForeignKey(
         User, related_name='entries', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
 
     class Meta:
         ordering = ['-created_at']
@@ -90,5 +90,5 @@ class Entry(models.Model):
     def __str__(self):
         if self.task:
             return f'{self.task.title} - {self.created_at}'
-        
+
         return f'{self.created_at}'

@@ -30,6 +30,56 @@
        <a href="{% url 'project:edit_task' project.id task.id %}" class="button is_warning">
           Edit Task
        </a>
+
+       <h2 class="subtitle mt-6">Register time</h2>
+
+       <form method="post" action=".">
+         {% csrf_token %}
+
+         <div class="field is-grouped">
+            <div class="control">
+               <div class="select">
+                  <select name="hours">
+                      <option value="0">0h</option>
+                      {% for i in "x"|rjust:"10" %}
+                          <option value="{{ forloop.counter }}">{{ forloop.counter }}h</option>
+                      {% endfor %}
+                  </select>
+               </div>
+            </div>
+
+             <div class="control">
+               <div class="select">
+                  <select name="minutes">
+                      <option value="0">0m</option>
+                      {% for i in "x"|rjust:"59" %}
+                          <option value="{{ forloop.counter }}">{{ forloop.counter }}m</option>
+                      {% endfor %}
+                  </select>
+               </div>
+            </div>    
+         </div>
+         
+         <div class="field">
+              <label>Date</label>
+              <div class="control"> 
+                 <input
+                  type="date"
+                  id="id_date"
+                  name="date"
+                  class="input"
+                  value="{{ today|date:"Y-m-d" }}"
+                  placeholder="yyyy-mm-dd"
+                  />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                 <button class="button is-info">Submit</button>
+              </div>
+            </div>
+       </form>
      </div>
   </div>
 </div>
