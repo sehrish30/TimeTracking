@@ -25,7 +25,7 @@
 
   <div class="columns">
      <div class="column">
-       <h1 class="title">{{ task.title }}</h1>
+       <h1 class="title">{{ task.title }}({{ task.get_status_display }})</h1>
 
        <a href="{% url 'project:edit_task' project.id task.id %}" class="button is_warning">
           Edit Task

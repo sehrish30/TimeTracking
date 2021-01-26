@@ -65,13 +65,13 @@
      {% endif %}
 
      {% if tasks_done %}
-        <div class="column is-12">
-           <h2 class="is-size-4">Done</h2>
+          <div class="column is-12">
+           <h2 class="is-size-4 nothing underline">Done</h2>
         </div>
 
         {% for task in tasks_done %}
-          <div class="columns is-4">
-            <div class="notification">
+          <div class="column is-3 p-4  ml-2 team">
+            <div class="team">
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
