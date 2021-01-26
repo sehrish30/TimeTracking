@@ -57,7 +57,7 @@
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
-
+              <p>Registered time: {{ task.registered_time }}</p>
               <hr>
               <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
           </div>
@@ -75,7 +75,7 @@
               <h3 class="is-size-5">
                 {{ task.title }}
               </h3>
-
+               <p>Registered time: {{ task.registered_time }}</p>
               <hr>
 
               <a href="{% url 'project:task' project.id task.id %}" class="button is-info">Details</a>
