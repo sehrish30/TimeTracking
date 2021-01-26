@@ -28,14 +28,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Dashboard
-    path('projects/', include('apps.project.urls')),
+    path('dashboard/', include('apps.dashboard.urls'))
 
     # Auth
     path('signup/', signup, name="signup"),
     path('login/', auth_views.LoginView.as_view(template_name="core/login.html"),  name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name="logout"),
-    path('myaccount/', include('apps.userprofile.urls')),
-    path('myaccount/teams/', include('apps.team.urls'))
+
 
 ]
 
