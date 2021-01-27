@@ -2,21 +2,22 @@
 {% load dashboardextras %}
 {% block title %} Dashboard | {% endblock %} 
 {% block content %}{% load static %}
+<h1 class="text-center top-heading">Your dashboard</h1>
 <div class="columns is-multiline">
   <div class="column is-6">
     <div class="team">
-      <h2 class="subtitle">
-        Your time {% if num_days is 0 %}today {% else %} {{
-        date_user|date:"Y-m-d" }}{% endif %}
+      <h2 class="subtitle dashboard-heading ">
+        Your time {% if num_days is 0 %} <span class="bold">today</span> {% else %}
+         <span class="bold">{{ date_user|date:"Y-m-d" }}</span>{% endif %}
       </h2>
 
       {% if date_entries %}
-      <table class="table is-fullwidth" style="text-align: left">
+      <table class="table is-fullwidth table-style" style="text-align: left">
         <thead>
           <tr>
-            <td>Task</td>
-            <td>Project</td>
-            <td>Time</td>
+            <th>Task</th>
+            <th>Project</th>
+            <th>Time</th>
           </tr>
         </thead>
 
@@ -33,12 +34,12 @@
         <tfoot>
           <tr>
             <td colspan="2">Total</td>
-            <td>{{ time_for_user_and_date|format_minutes }}</td>
+            <td><span class="total-time">{{ time_for_user_and_date|format_minutes }}</span></td>
           </tr>
         </tfoot>
       </table>
       {% else %}
-      <div class="column is-6">
+      <div class="column text-center is-12">
         <div class="">
           <p class="nothing">No enties today...</p>
           <img class="account-img" src="{% static 'images/empty.svg' %}" />
@@ -46,26 +47,28 @@
       </div>
       {% endif %}
 
-      <a href="?num_days={{ num_days|add:'1'}}" class="mt-4">Previous</a>
+   <div class="text-center">
+      <a href="?num_days={{ num_days|add:'1'}}" class="mt-4 arrow"><i class="fas fa-arrow-left"></i></a>
       {% if num_days > 0 %}
-      <a href="?num_days={{ num_days|add:'-1'}}" class="mt-4">Next</a>
+      <a href="?num_days={{ num_days|add:'-1'}}" class="mt-4 arrow"><i class="fas fa-arrow-right"></i></a>
       {% endif %}
+    </div>
     </div>
   </div>
 
   <div class="column is-6">
     <div class="team">
-      <h2 class="subtitle">
-        Your time {% if user_num_months is 0 %}this month {% else %} {{
-        user_month|date:"Y-m" }}{% endif %}
+      <h2 class="subtitle  dashboard-heading ">
+        Your time {% if user_num_months is 0 %}<span class="bold">this month</span> {% else %} 
+        <span class="bold">{{ user_month|date:"Y-m" }}</span>{% endif %}
       </h2>
 
       {% if time_for_user_and_month %}
-      <table class="table is-fullwidth" style="text-align: left">
+      <table class="table is-fullwidth table-style" style="text-align: left">
         <thead>
           <tr>
-            <td>Project</td>
-            <td>Time</td>
+            <th>Project</th>
+            <th>Time</th>
           </tr>
         </thead>
 
@@ -82,12 +85,12 @@
         <tfoot>
           <tr>
             <td>Total</td>
-            <td>{{ time_for_user_and_month|format_minutes }}</td>
+            <td><span class="total-time">{{ time_for_user_and_month|format_minutes }}</span></td>
           </tr>
         </tfoot>
       </table>
       {% else %}
-      <div class="column is-6">
+      <div class="column text-center is-12">
         <div class="">
           <p class="nothing">No enties this month...</p>
           <img class="account-img" src="{% static 'images/empty.svg' %}" />
@@ -95,24 +98,28 @@
       </div>
       {% endif %}
 
-      <a href="?user_num_months={{user_num_months|add:'1'}}" class="mt-4"
-        >Previous</a
+     <div class="text-center">
+      <a href="?user_num_months={{user_num_months|add:'1'}}" class="mt-4 arrow"
+        ><i class="fas fa-arrow-left "></i></a
       >
       {% if user_num_months > 0 %}
-      <a href="?user_num_months={{ user_num_months|add:'-1'}}" class="mt-4"
-        >Next</a
+      <a href="?user_num_months={{ user_num_months|add:'-1'}}" class="mt-4 arrow"
+        ><i class="fas fa-arrow-right"></i></a
       >
       {% endif %}
+      </div>
     </div>
   </div>
 
  {% if request.user == team.created_by %}
   <div class="column is-6">
-     <div class="notification">
-        <h2 class="subtitle">Your team {% if team_num_months is 0 %} this month {% else %} {{ team_mo|date:"Y-m" }} {%endif%}</h2>
+     <div class="team">
+        <h2 class="subtitle  dashboard-heading ">Your team {% if team_num_months is 0 %} 
+           <span class="bold">this month</span> 
+        {% else %}<span class="bold"> {{ team_month|date:"Y-m" }} </span>{%endif%}</h2>
 
         {% if time_for_team_and_month > 0%}
-          <table class="table is-fullwidth" style="text-align: left">
+          <table class="table is-fullwidth table-style" style="text-align: left">
              <thead>
                <tr>
                   <th>Name</th>
@@ -129,9 +136,16 @@
                 </tr>
              </tbody>
 
+         <tfoot>
+          <tr>
+            <td>Total</td>
+            <td><span class="total-time">{{ time_for_user_and_month|format_minutes }}</span></td>
+          </tr>
+        </tfoot>
+
           </table>
         {% else %}
-          <div class="column is-6">
+          <div class="column text-center is-12">
             <div class="">
               <p class="nothing">No registered time for your team this month...</p>
               <img class="account-img" src="{% static 'images/empty.svg' %}" />
@@ -139,37 +153,40 @@
           </div> 
         {% endif %}
 
-      <a href="?team_num_months={{team_num_months|add:'1'}}" class="mt-4"
-        >Previous</a
-      >
-      {% if team_num_months > 0 %}
-      <a href="?team_num_months={{ team_num_months|add:'-1'}}" class="mt-4"
-        >Next</a
-      >
+      <div class="text-center">
+        <a href="?team_num_months={{team_num_months|add:'1'}}" class="mt-4 arrow"
+          ><i class="fas fa-arrow-left"></i></a
+        >
+        {% if team_num_months > 0 %}
+        <a href="?team_num_months={{ team_num_months|add:'-1'}}" class="mt-4 arrow"
+          ><i class="fas fa-arrow-right"></i></a>
+      </div>
+
       {% endif %}
      </div>
   </div>
   {% endif %}
 </div>
+</div>
 
 <div class="columns is-multiline">
   <div class="column is-12">
-    <h2 class="subtitle">Newest projects</h2>
+    <h2 class="text-center top-heading">Newest projects</h2>
   </div>
 
   {% for project in projects %}
-    <div class="column is-3"> 
-       <div class="notification">
-          <h2 class="is-size-5">{{ project.title }}</h2>
-          <p class="is-size-7">Registered time: {{ project.registered_time|format_minutes }}</p>
-          <p class="is-size-7">Tasks: {{ project.num_tasks_todo }} </p>
+    <div class="column ml-3 is-3 team"> 
+       <div class="">
+          <h2 class="is-size-4 register_heading">{{ project.title }}</h2>
+          <p class="is-size-6 register_time"><i class="icon-new fas fa-clock"></i>Registered time: {{ project.registered_time|format_minutes }}</p>
+          <p class="is-size-6"><i class="icon-new fas fa-tasks"></i>Tasks: {{ project.num_tasks_todo }} </p>
           <hr>
           <a href="{% url 'project:project' project.id %}" class="button is-info">Details</a>
        </div>
     </div>
     {% empty %}
     <div class="column is-3">
-       <div class="notification">
+       <div class="">
           <p class="nothing">No new projects...</p>
           <img class="account-img" src="{% static 'images/empty.svg' %}" />
        </div>

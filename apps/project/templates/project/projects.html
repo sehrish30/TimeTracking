@@ -27,7 +27,7 @@
 
   <div class="columns">
     {% for project in projects %}
-    <div class="column is-3 team">
+    <div class="column ml-3 is-3 team">
       <div class="">
          <h1 class="is-size-4 register_heading">{{ project.title }}</h1>
          <p class="is-size-6 register_time"><i class="icon-new fas fa-clock"></i>Registered time: {{ project.registered_time|format_minutes }}</p>

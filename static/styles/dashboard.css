@@ -1,0 +1,68 @@
+::-moz-selection {
+  /* Code for Firefox */
+  color: #6f9eaf;
+  background: #f6d887;
+}
+
+::selection {
+  color: #6f9eaf;
+  background: #f6d887;
+}
+
+.table-style {
+  background: rgb(98, 149, 156);
+  background: linear-gradient(
+    324deg,
+    rgba(98, 149, 156, 1) 0%,
+    rgba(193, 146, 119, 1) 100%
+  );
+  color: white;
+}
+
+.total-time {
+  font-weight: bold;
+  font-size: 1rem;
+  font-style: italic;
+  color: #f6d887;
+}
+
+.dashboard-heading {
+  padding: 1rem;
+  text-align: center;
+  color: #312c51;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fa-arrow-right,
+.fa-arrow-left {
+  color: #312c51;
+  font-size: 1.2rem;
+}
+
+.arrow {
+  padding: 0.2rem;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.arrow:hover {
+  background-color: white;
+}
+
+.top-heading {
+  font-family: "Indie Flower", cursive;
+  color: #a9294f;
+  font-size: 2rem;
+  text-decoration: underline;
+}
