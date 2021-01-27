@@ -1,4 +1,6 @@
-{% extends 'core/base.html' %} {% block title %} Dashboard | {% endblock %} 
+{% extends 'core/base.html' %}
+{% load dashboardextras %}
+{% block title %} Dashboard | {% endblock %} 
 {% block content %}{% load static %}
 <div class="columns is-multiline">
   <div class="column is-6">
@@ -23,7 +25,7 @@
           <tr>
             <td>{{ entry.task.title }}</td>
             <td>{{ entry.project.title }}</td>
-            <td>{{ entry.minutes }}</td>
+            <td>{{ entry.minutes|format_minutes }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -31,7 +33,7 @@
         <tfoot>
           <tr>
             <td colspan="2">Total</td>
-            <td>{{ time_for_user_and_date }}</td>
+            <td>{{ time_for_user_and_date|format_minutes }}</td>
           </tr>
         </tfoot>
       </table>
@@ -72,7 +74,7 @@
           {% if project.time_for_user_and_project_and_month > 0 %}
           <tr>
             <td>{{ project.title }}</td>
-            <td>{{ project.time_for_user_and_project_and_month }}</td>
+            <td>{{ project.time_for_user_and_project_and_month|format_minutes }}</td>
           </tr>
           {% endif %} {% endfor %}
         </tbody>
@@ -80,7 +82,7 @@
         <tfoot>
           <tr>
             <td>Total</td>
-            <td>{{ time_for_user_and_month }}</td>
+            <td>{{ time_for_user_and_month|format_minutes }}</td>
           </tr>
         </tfoot>
       </table>
@@ -122,7 +124,7 @@
                <tr>
                 {% for member in members %}
                    <td>{% firstof member.get_full_name member.username %}</td>
-                   <td>{{ member.time_for_user_and_team_and_month }}</td>
+                   <td>{{ member.time_for_user_and_team_and_month|format_minutes }}</td>
                 {% endfor %}
                 </tr>
              </tbody>

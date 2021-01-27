@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load dashboardextras %}
 {% block title %}Projects | {% endblock %}
 
 {% block content %}{% load static %}
@@ -29,7 +30,7 @@
     <div class="column is-3 team">
       <div class="">
          <h1 class="is-size-4 register_heading">{{ project.title }}</h1>
-         <p class="is-size-6 register_time"><i class="icon-new fas fa-clock"></i>Registered time: {{ project.registered_time }} minutes</p>
+         <p class="is-size-6 register_time"><i class="icon-new fas fa-clock"></i>Registered time: {{ project.registered_time|format_minutes }}</p>
          <h5 class="is-size-6"><i class="icon-new fas fa-tasks"></i>Tasks: {{ project.num_tasks_todo }}</h5>
 
          <hr>
