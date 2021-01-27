@@ -31,11 +31,11 @@ LOGIN_REDIRECT_URL = 'myaccount'
 LOGOUT_REDIRECT_URL = 'frontpage'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = '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'
-EMAIL_HOST_PASSWORD = 'test1234',
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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',
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_EMAIL_FROM = 'Minutos <sehrishwaheed30@gmail.com>'
+DEFAULT_EMAIL_FROM = 'Minutos <noreply@codewithstein.com>'
 
 ACCEPTATION_URL = 'http://127.0.0.1:8000/signup/'
 

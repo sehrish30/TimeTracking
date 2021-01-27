@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %} {% comment %}
+<!--------------------------------->
+{% endcomment %} {% block title %} Invite member | {% endblock %} {% comment %}
+<!--------------------------------->
+{% endcomment %} {% block content %} {% comment %}
+<!--------------------------------->
+{% endcomment %}
+{% load static %}
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="#">Dashboard</a></li>
+    {% comment %} team.id is primary key sending to  teams page to show details {% endcomment %}
+    <li><a href="{% url 'team:team' team.id %}">{{ team.title }}</a></li>
+     <li class="is-active">
+      <a  href="{% url 'team:invite' %}" aria-current="page"
+        >Invite member</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="columns is-multiline" id="invite-app">
+  <div class="column is-8">
+    <h1 class="title">Invite member</h1>
+  </div>
+
+  <div class="column is-6">
+      {% comment %} No validate because donot want to do browser's validation {% endcomment %}
+    <form method="post" action="." @submit="validateForm" novalidate>
+        {% csrf_token %}
+
+        
+        <div class="notification is-danger" v-if="errors.length">
+           <p v-for="error in errors">[[ error ]]</p>
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+
+            <div class="control">
+            <input type="email" name="email" id="id_email" v-model="email" class="input"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+            <button class="button is-info">Send invitation</button>
+            </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const InviteApp = {
+    data() {
+        return {
+            email: '',
+            errors: []
+        }
+    },
+    delimiters: ["[[", "]]"],
+    methods: {
+        
+        validateForm(e){
+              if(this.validateEmail(this.email)){
+                  return true
+              }
+              this.errors = ['The email is not valid']
+              e.preventDefault()
+
+              return false
+        },
+        validateEmail(email) {
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+                email
+            )
+            ) {
+            return true;
+            }
+            return false;
+        }
+    
+   
+    }
+}
+Vue.createApp(InviteApp).mount('#invite-app')
+</script>
+{% endblock %}

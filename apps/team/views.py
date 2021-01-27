@@ -1,9 +1,18 @@
+# import python
+from apps.team.utilities import send_invitation
+import random
+
+# import django
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from .models import Team
+from .models import Team, Invitation
+
+# import helpers
+from .utilities import send_invitation, send_invitation_accepted
+
 # Views
 
 
@@ -12,7 +21,8 @@ from .models import Team
 def team(request, team_id):
     team = get_object_or_404(
         Team, pk=team_id, status=Team.ACTIVE, members__in=[request.user])
-    return render(request, 'team/team.html', {'team': team})
+    invitations = team.invitations.filter(status=Invitation.INVITED)
+    return render(request, 'team/team.html', {'team': team, 'invitations': invitations})
 
 
 @login_required
@@ -64,3 +74,65 @@ def activate_team(request, team_id):
 
     messages.info(request, 'The new team is activated ')
     return redirect('team:team', team_id=team.id)
+
+
+@login_required
+def invite(request):
+    team = get_object_or_404(Team, pk=request.user.userprofile.active_team_id,
+                             status=Team.ACTIVE)
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        # check this email hasnot been invited before
+        if email:
+            invitations = Invitation.objects.filter(team=team, email=email)
+
+            if not invitations:
+                # create four letter string
+                code = ''.join(random.choice(
+                    'abcdefghijklmnopqrstuvwxyz0123456789') for i in range(4))
+                invitation = Invitation.objects.create(
+                    team=team, email=email, code=code)
+
+                messages.info(request, 'The user was invited')
+
+                # user helper func to send invitation
+                send_invitation(email, code, team)
+
+                return redirect('team:team', team_id=team.id)
+            else:
+                messages.info(request, 'The user has already been invited')
+
+    return render(request, 'team/invite.html', {'team': team})
+
+
+@login_required
+def accept_invitation(request):
+    if request.method == 'POST':
+        code = request.POST.get('code')
+
+        invitations = Invitation.objects.filter(
+            code=code, email=request.user.email)
+
+        if invitations:
+            invitation = invitations[0]
+            invitation.status = Invitation.ACCEPTED
+            invitation.save()
+
+            team = invitation.team
+            team.members.add(request.user)
+            team.save()
+
+            userprofile = request.user.userprofile
+            userprofile.active_team_id = team.id
+            userprofile.save()
+
+            messages.info(request, 'Invitation accepted')
+
+            send_invitation_accepted(team, invitation)
+            return redirect('team:team', team_id=team.id)
+        else:
+            messages.info(request, "Invitation was not found")
+
+    else:
+        return render(request, 'team/accept_invitation.html')

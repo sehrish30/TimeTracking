@@ -1,7 +1,8 @@
-# Import Django
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+
+#
 
 
 def send_invitation(to_email, code, team):
@@ -9,7 +10,7 @@ def send_invitation(to_email, code, team):
     acceptation_url = settings.ACCEPTATION_URL
 
     subject = 'Invitation to Minutos'
-    text_content = 'Invitation to Minutos. Your code is %s' % code
+    text_content = 'Invitation to Minutos. Your code is: %s' % code
     html_content = render_to_string(
         'team/email_invitation.html', {'code': code, 'team': team, 'acceptation_url': acceptation_url})
 
@@ -25,6 +26,7 @@ def send_invitation_accepted(team, invitation):
     html_content = render_to_string(
         'team/email_accepted_invitation.html', {'team': team, 'invitation': invitation})
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email)
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [
+                                 team.created_by.email])
     msg.attach_alternative(html_content, 'text/html')
     msg.send()

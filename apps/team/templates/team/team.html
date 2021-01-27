@@ -23,15 +23,23 @@
   <div class="column is-8">
     <h1 class="title">{{ team.title }}</h1>
 
+    {% if request.user == team.created_by %}
+      <a href="{% url 'team:invite' %}" class="button is-primary">Invite users</a>
+    {% endif %}
+
     <hr>
 
     <h2 class="subtitle mt-6"> <i class="fas fa-user-friends"></i>Members</h2>
  <ol type="1">
     {% for member in team.members.all %}
-   
-	<li>{{ member.username }}</li>
+        <li>{{ member.username }}</li>
     {% endfor %}
     </ol>
+
+    <h2 class="subtitle mt-6">Invited Members</h2>
+    {% for member in invitations %}
+       <p>{{ member.email }}- {{ member.date_sent|timesince }} ago</p>
+    {% endfor %}
   </div>
   <div class="column is-4">
      <img src="{% static 'images/9814.jpg' %}"/>
