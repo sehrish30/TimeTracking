@@ -61,6 +61,7 @@ def dashboard(request):
         'team': team,
         'all_projects': all_projects,
         'date_entries': date_entries,
+        'projects': all_projects[0:4],
         'num_days': num_days,
         'date_user': date_user,
         'members': members,

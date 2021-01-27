@@ -156,5 +156,25 @@
   <div class="column is-12">
     <h2 class="subtitle">Newest projects</h2>
   </div>
+
+  {% for project in projects %}
+    <div class="column is-3"> 
+       <div class="notification">
+          <h2 class="is-size-5">{{ project.title }}</h2>
+          <p class="is-size-7">Registered time: {{ project.registered_time|format_minutes }}</p>
+          <p class="is-size-7">Tasks: {{ project.num_tasks_todo }} </p>
+          <hr>
+          <a href="{% url 'project:project' project.id %}" class="button is-info">Details</a>
+       </div>
+    </div>
+    {% empty %}
+    <div class="column is-3">
+       <div class="notification">
+          <p class="nothing">No new projects...</p>
+          <img class="account-img" src="{% static 'images/empty.svg' %}" />
+       </div>
+    </div>
+
+  {% endfor %}
 </div>
 {% endblock %}
