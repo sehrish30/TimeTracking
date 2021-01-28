@@ -30,7 +30,7 @@ def plans(request):
 
 
 def signup(request):
-    userprofile = Userprofile.objects.create(user=request.user)
+    # userprofile = Userprofile.objects.create(user=request.user)
     # check if form is submitted
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

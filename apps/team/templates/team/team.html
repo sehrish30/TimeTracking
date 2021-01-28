@@ -29,17 +29,21 @@
 
     <hr>
 
-    <h2 class="subtitle mt-6"> <i class="fas fa-user-friends"></i>Members</h2>
+    <h2 class="subtitle mt-6"> <i class="fas fa-user-friends icon-new"></i>Members</h2>
  <ol type="1">
     {% for member in team.members.all %}
         <li>{{ member.username }}</li>
     {% endfor %}
     </ol>
+   <hr>
+    <h2 class="subtitle mt-6"><i class="fas fa-people-arrows icon-new"></i>Invited Members</h2>
 
-    <h2 class="subtitle mt-6">Invited Members</h2>
-    {% for member in invitations %}
-       <p>{{ member.email }}- {{ member.date_sent|timesince }} ago</p>
-    {% endfor %}
+    <ol type="1">
+      {% for member in invitations %}
+        <li><span class="member-email">{{ member.email }}</span>- {{ member.date_sent|timesince }} ago</li>
+      {% endfor %}
+    </ol>
+
   </div>
   <div class="column is-4">
      <img src="{% static 'images/9814.jpg' %}"/>

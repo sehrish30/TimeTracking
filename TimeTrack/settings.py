@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,12 +32,14 @@ LOGOUT_REDIRECT_URL = 'frontpage'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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',
-EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 465
 EMAIL_USE_TLS = True
-DEFAULT_EMAIL_FROM = 'Minutos <noreply@codewithstein.com>'
+DEFAULT_EMAIL_FROM = 'sehrishwaheed30@gmail.com'
 
 ACCEPTATION_URL = 'http://127.0.0.1:8000/signup/'
+
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 ALLOWED_HOSTS = []
 

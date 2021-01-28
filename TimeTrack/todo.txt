@@ -76,4 +76,5 @@ Get credentials from send grid (or smtp server of your choice)
 Create helper functinos for sending emails
 Setup email templates
 Create view and template for sending invites
+Show list of invited members
 
