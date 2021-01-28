@@ -15,7 +15,9 @@ from apps.team.utilities import send_invitation_accepted
 def myaccount(request):
     teams = request.user.teams.exclude(
         pk=request.user.userprofile.active_team_id)
-    return render(request, 'userprofile/myaccount.html', {'teams': teams})
+    invitations = Invitation.objects.filter(
+        email=request.user.email, status=Invitation.INVITED)
+    return render(request, 'userprofile/myaccount.html', {'teams': teams, 'invitations': invitations})
 
 
 @login_required
@@ -25,6 +27,12 @@ def edit_profile(request):
         request.user.last_name = request.POST.get('last_name', '')
         request.user.email = request.POST.get('email', '')
         request.user.save()
+
+        if request.FILES:
+            avatar = request.FILES['avatar']
+            userprofile = request.user.userprofile
+            userprofile.avatar = avatar
+            userprofile.save()
 
         messages.info(request, 'Your changes are saved')
 

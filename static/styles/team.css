@@ -185,6 +185,28 @@ td {
   color: #ffdf91;
 }
 
-.member-email{
+.member-email {
   font-weight: bold;
+}
+
+.team-invitation {
+  padding: 1rem;
+}
+
+.invite-team-link {
+  color: white;
+}
+
+.invite-team-link:hover {
+  text-decoration: underline;
+}
+
+.file.has-name .file-name,
+.file.has-name .file-cta {
+  background-color: #493323 !important;
+  color: #f6d887;
+}
+
+.avatar-editimage {
+  margin-bottom: 3rem;
 }

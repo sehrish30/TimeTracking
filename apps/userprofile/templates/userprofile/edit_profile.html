@@ -64,6 +64,31 @@
       </div>
 
       <div class="field">
+        <label>Avatar</label>
+        <figure class="image is-64x64 avatar-editimage">
+           <img class="is-rounded" src="{{ request.user.userprofile.get_avatar }}"/>
+        </figure>
+        <div class="control mt-2">
+          {% comment %} <input type="file" name="avatar" id="id_avatar" class="input"> {% endcomment %}
+          <div class="file has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" id="id_avatar" name="avatar">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+              <span class="file-name">
+                {{ request.user.userprofile.get_avatar }}
+              </span>
+            </label>
+         </div>
+        </div>
+      </div>
+      <div class="field">
         <div class="control">
           <button class="button is-info">Save changes</button>
         </div>

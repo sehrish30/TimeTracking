@@ -35,17 +35,32 @@ def send_invitation(to_emails, code, team):
         print(response.status_code)
     except Exception as e:
         print(e)
-        print(SENDGRID_API_KEY)
 
 
 def send_invitation_accepted(team, invitation):
+    api_key = settings.EMAIL_HOST_PASSWORD
     from_email = settings.DEFAULT_EMAIL_FROM
     subject = 'Invitation accepted'
     text_content = 'Your invitation was accepted'
+    to_emails = team.created_by.email
     html_content = render_to_string(
         'team/email_accepted_invitation.html', {'team': team, 'invitation': invitation})
+    message = Mail(
+        from_email,
+        [to_emails],
+        subject,
+        text_content,
+        html_content
+    )
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, [
-                                 team.created_by.email])
-    msg.attach_alternative(html_content, 'text/html')
-    msg.send()
+    try:
+        sg = SendGridAPIClient(api_key)
+        response = sg.send(message)
+        print(response.status_code)
+    except Exception as e:
+        print(e)
+
+    # msg = EmailMultiAlternatives(subject, text_content, from_email, [
+    #                              team.created_by.email])
+    # msg.attach_alternative(html_content, 'text/html')
+    # msg.send()
