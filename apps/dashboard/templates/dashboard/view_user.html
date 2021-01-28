@@ -1,13 +1,23 @@
 {% extends 'core/base.html' %}
 {% load dashboardextras %}
-{% block title %} Dashboard | {% endblock %} 
+{% block title %} {% firstof user.get_full_name user.username %} | {% endblock %} 
 {% block content %}{% load static %}
-<h1 class="text-center top-heading">Your dashboard</h1>
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="#">Dashboard</a></li>
+    <li class="is-active">
+      <a href="{% url 'view_user' user.id %}" aria-current="page"
+        >{% firstof user.get_full_name user.username %}</a
+      >
+    </li>
+  </ul>
+</nav>
+<h1 class="text-center top-heading">Your activites</h1>
 <div class="columns is-multiline">
   <div class="column is-6">
     <div class="team">
       <h2 class="subtitle dashboard-heading ">
-        Your time {% if num_days is 0 %} <span class="bold">today</span> {% else %}
+        {% firstof user.get_full_name user.username %}'s time {% if num_days is 0 %} <span class="bold">today</span> {% else %}
          <span class="bold">{{ date_user|date:"Y-m-d" }}</span>{% endif %}
       </h2>
 
@@ -59,7 +69,7 @@
   <div class="column is-6">
     <div class="team">
       <h2 class="subtitle  dashboard-heading ">
-        Your time {% if user_num_months is 0 %}<span class="bold">this month</span> {% else %} 
+        {% firstof user.get_full_name user.username %}'s time {% if user_num_months is 0 %}<span class="bold">this month</span> {% else %} 
         <span class="bold">{{ user_month|date:"Y-m" }}</span>{% endif %}
       </h2>
 
@@ -111,87 +121,8 @@
     </div>
   </div>
 
- {% if request.user == team.created_by %}
-  <div class="column is-6">
-     <div class="team">
-        <h2 class="subtitle  dashboard-heading ">Your team {% if team_num_months is 0 %} 
-           <span class="bold">this month</span> 
-        {% else %}<span class="bold"> {{ team_month|date:"Y-m" }} </span>{%endif%}</h2>
-
-        {% if time_for_team_and_month > 0%}
-          <table class="table is-fullwidth table-style" style="text-align: left">
-             <thead>
-               <tr>
-                  <th>Name</th>
-                  <th>Time</th>
-               </tr>
-             </thead>
-
-             <tbody>
-                 {% for member in members %}
-               <tr>
-                   <td><a class="invite-team-link " href="{% url 'view_user' member.id %}">{% firstof member.get_full_name member.username %}</a></td>
-                   <td>{{ member.time_for_user_and_team_and_month|format_minutes }}</td>
-                </tr>
-                     {% endfor %}
-             </tbody>
-
-         <tfoot>
-          <tr>
-            <td>Total</td>
-            <td><span class="total-time">{{ time_for_user_and_month|format_minutes }}</span></td>
-          </tr>
-        </tfoot>
-
-          </table>
-        {% else %}
-          <div class="column text-center is-12">
-            <div class="">
-              <p class="nothing">No registered time for your team this month...</p>
-              <img class="account-img" src="{% static 'images/empty.svg' %}" />
-            </div>
-          </div> 
-        {% endif %}
-
-      <div class="text-center">
-        <a href="?team_num_months={{team_num_months|add:'1'}}" class="mt-4 arrow"
-          ><i class="fas fa-arrow-left"></i></a
-        >
-        {% if team_num_months > 0 %}
-        <a href="?team_num_months={{ team_num_months|add:'-1'}}" class="mt-4 arrow"
-          ><i class="fas fa-arrow-right"></i></a>
-      </div>
-
-      {% endif %}
-     </div>
-  </div>
-  {% endif %}
 </div>
 </div>
 
-<div class="columns is-multiline">
-  <div class="column is-12">
-    <h2 class="text-center top-heading">Newest projects</h2>
-  </div>
 
-  {% for project in projects %}
-    <div class="column ml-3 is-3 team"> 
-       <div class="">
-          <h2 class="is-size-4 register_heading">{{ project.title }}</h2>
-          <p class="is-size-6 register_time"><i class="icon-new fas fa-clock"></i>Registered time: {{ project.registered_time|format_minutes }}</p>
-          <p class="is-size-6"><i class="icon-new fas fa-tasks"></i>Tasks: {{ project.num_tasks_todo }} </p>
-          <hr>
-          <a href="{% url 'project:project' project.id %}" class="button is-info">Details</a>
-       </div>
-    </div>
-    {% empty %}
-    <div class="column is-3">
-       <div class="">
-          <p class="nothing">No new projects...</p>
-          <img class="account-img" src="{% static 'images/empty.svg' %}" />
-       </div>
-    </div>
-
-  {% endfor %}
-</div>
 {% endblock %}

@@ -81,3 +81,8 @@ Check for invitation when you sign up
 View and template for accepting an invite
 Show your invitations on you account page
 
+8) 
+
+Add avatars to the user
+Create new view and template for showing a user
+
