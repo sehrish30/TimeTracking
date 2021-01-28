@@ -46,11 +46,11 @@ def signup(request):
 
             # Log in
             login(request, user)
-            invitations = Invitation.objects.filter(
-                email=user.email, status=Invitation.INVITED)
+            invitations = Invitation.objects.filter(email=user.email,
+                                                    status=Invitation.INVITED)
 
             if invitations:
-                return redirect('team:accept_invitation')
+                return redirect('accept_invitation')
             else:
                 return redirect('dashboard')
 

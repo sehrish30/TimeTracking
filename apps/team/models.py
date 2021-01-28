@@ -30,12 +30,12 @@ class Team(models.Model):
 
 
 class Invitation(models.Model):
-    INVITED = 'invited'
+    INVITED = 'Invited'
     ACCEPTED = 'accepted'
 
    # choices is iterable containing actual values and human readable values
     CHOICES_STATUS = (
-        (INVITED, 'Invited'),
+        (INVITED, 'invited'),
         (ACCEPTED, 'Accepted')
     )
     team = models.ForeignKey(

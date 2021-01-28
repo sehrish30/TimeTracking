@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Team, Invitation
 
 # import helpers
-from .utilities import send_invitation, send_invitation_accepted
+from .utilities import send_invitation
 
 # Views
 
@@ -104,35 +104,3 @@ def invite(request):
                 messages.info(request, 'The user has already been invited')
 
     return render(request, 'team/invite.html', {'team': team})
-
-
-@login_required
-def accept_invitation(request):
-    if request.method == 'POST':
-        code = request.POST.get('code')
-
-        invitations = Invitation.objects.filter(
-            code=code, email=request.user.email)
-
-        if invitations:
-            invitation = invitations[0]
-            invitation.status = Invitation.ACCEPTED
-            invitation.save()
-
-            team = invitation.team
-            team.members.add(request.user)
-            team.save()
-
-            userprofile = request.user.userprofile
-            userprofile.active_team_id = team.id
-            userprofile.save()
-
-            messages.info(request, 'Invitation accepted')
-
-            send_invitation_accepted(team, invitation)
-            return redirect('team:team', team_id=team.id)
-        else:
-            messages.info(request, "Invitation was not found")
-
-    else:
-        return render(request, 'team/accept_invitation.html')
