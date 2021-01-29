@@ -87,6 +87,25 @@
           </div>
         </div>
       </nav>
+
+      <div class="modal" :class="{'is-active': showTrackingModal}">
+        <div class="modal-background">
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-card-head">
+            <p class="modal-card-title">Tracked time</p>
+          </div>
+          <div class="modal-card-body">
+            <p>You have tracked [[ readableSeconds ]]</p>
+          </div>
+          <footer class="modal-card-foot">
+            <button class="button is-primary" @click="addToTask()">Add to task</button>
+            <button class="button is-primary is-outlined" @click="addLater()">Add later</button>
+            <button class="button is-danger is-outlined" @click="discardTimer()">Discard</button>
+          </footer>
+        </div>
+      </div>
     </div>
     <!--End Navbar-->
 
@@ -151,7 +170,7 @@
         delimiters: ['[[', ']]'],
         methods: {
           startTimer(){
-           fetch('/dashborad/projects/api/start_timer/', {
+           fetch('/dashboard/projects/api/start_timer/', {
              method: 'POST',
              headers: {
                'Content-Type':'application/json',
@@ -169,7 +188,7 @@
            })
           },
           stopTimer(){
-            fetch('/dashborad/projects/api/stop_timer/', {
+            fetch('/dashboard/projects/api/stop_timer/', {
              method: 'POST',
              headers: {
                'Content-Type':'application/json',
@@ -184,10 +203,10 @@
 
               window.clearTimeout(this.timer)
            })
-          }
-        },
+          },
+    
         discardTimer(){
-           fetch('/dashborad/projects/api/discard_timer/', {
+           fetch('/dashboard/projects/api/discard_timer/', {
              method: 'POST',
              headers: {
                'Content-Type':'application/json',
@@ -201,6 +220,7 @@
         addLater(){
            this.seconds = 0
            this.showTrackingModal = false
+          }
         },
        mounted() {
           if (this.seconds !== 0) {
@@ -223,7 +243,7 @@
 
               return hDisplay + mDisplay + sDisplay; 
           }
-        },
+        }
       }
       Vue.createApp(NavbarApp).mount('#navbar-app')
     </script>
