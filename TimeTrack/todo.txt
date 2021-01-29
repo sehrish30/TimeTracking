@@ -93,4 +93,7 @@ Show what the user has done a certain month
 Make a globally available active entry functions
 Add buttons in the menu for tracking time
 Create api functions for starting, stopping and discarding time
+Create Vue functionalities for choosing what to done
+Add modal for choosing what to do 
+Show untracked entries on dashboard
 

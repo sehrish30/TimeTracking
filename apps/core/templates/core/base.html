@@ -220,6 +220,9 @@
         addLater(){
            this.seconds = 0
            this.showTrackingModal = false
+          },
+        addToTask(){
+               window.location.href = `/dashboard/projects/track_entry/${this.entryID}/`
           }
         },
        mounted() {

@@ -57,7 +57,13 @@ def dashboard(request):
         member.time_for_user_and_team_and_month = get_time_for_user_and_team_month(
             team, member, team_month)
 
+    untracked_entries = Entry.objects.filter(
+        team=team, created_by=request.user, is_tracked=False).order_by('-created_at')
+
+    for untracked_entry in untracked_entries:
+        untracked_entry.minutes_since = int((datetime.now(timezone.utc) - untracked_entry.created_at).total_seconds() / 60)
     context = {
+        'untracked_entries': untracked_entries,
         'team': team,
         'all_projects': all_projects,
         'date_entries': date_entries,
