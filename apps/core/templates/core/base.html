@@ -45,6 +45,23 @@
              {% else %}
               <a href = "{% url 'dashboard' %}" class="navbar-item">Dashboard</a>
               <a href="{% url 'project:projects' %}" class="navbar-item">Projects</a>
+
+              <div class="navbar-item" v-if="!trackingTime">
+                <div class="buttons">
+                  <a class="button is-info is-outlined" @click="startTimer()">
+                    <span class="new_icon icon"><i class="fas fa-stopwatch"></i></span>
+                    <span>Start</span>
+                  </a>
+                </div>
+              </div>
+              <div class="navbar-item" v-else>
+                <div class="buttons">
+                  <a class="button is-primary is-outlined" @click="stopTimer()">
+                    <span class="new_icon icon"><i class="fas fa-stopwatch"></i></span>
+                    <span>[[ readableSeconds ]] (Stop)</span>
+                  </a>
+                </div>
+              </div>
             {% endif %}
 
             <div class="navbar-item">
@@ -119,7 +136,56 @@
     <!--Scripts-->
     <script src="https://unpkg.com/vue@next"></script>
 
-    {% block scripts %} {% endblock %}
+    <script>
+      const NavbarApp = {
+        data(){
+          return {
+            seconds: {{active_entry_seconds}},
+            trackingTime: false,
+            showTrackingModal: false,
+            timer: null,
+            entryId: 0,
+            startTime: '{{ start_time }}'
+          }
+        },
+        delimiters: ['[[', ']]'],
+        methods: {
+          startTimer(){
+
+          },
+          stopTimer(){
+
+          }
+        },
+       mounted() {
+          if (this.seconds !== 0) {
+              this.trackingTime = true
+              this.timer = setInterval(() => {
+                  this.seconds = (new Date() - new Date(this.startTime)) / 1000
+              }, 1000)
+          }
+      },
+      computed: {
+          readableSeconds() {
+              const d = Number(this.seconds);
+              const h = Math.floor(d / 3600);
+              const m = Math.floor(d % 3600 / 60);
+              const s = Math.floor(d % 3600 % 60);
+
+              const hDisplay = h > 0 ? h + (h == 1 ? "h, " : "h, ") : "";
+              const mDisplay = m > 0 ? m + (m == 1 ? "m, " : "m, ") : "";
+              const sDisplay = s >= 0 ? s + (s == 1 ? "s" : "s") : "";
+
+              return hDisplay + mDisplay + sDisplay; 
+          }
+        },
+      }
+      Vue.createApp(NavbarApp).mount('#navbar-app')
+    </script>
+
+    {% block scripts %}
+    
+    {% endblock %}
     <!--End of Scripts-->
   </body>
 </html>

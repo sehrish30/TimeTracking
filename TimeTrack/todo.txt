@@ -85,4 +85,10 @@ Show your invitations on you account page
 
 Add avatars to the user
 Create new view and template for showing a user
+Show what the user has done a certain date
+Show what the user has done a certain month
+
+9) 
+
+Make a globally available active entry functions
 

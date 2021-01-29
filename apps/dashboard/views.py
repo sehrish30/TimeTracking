@@ -111,6 +111,7 @@ def view_user(request, user_id):
         'date_user': date_user,
         'user_num_months': user_num_months,
         'user_month': user_month,
+        'user': user,
         'time_for_user_and_month': get_time_for_user_and_month(team, request.user, user_month),
         'time_for_user_and_date': get_time_for_user_and_date(team, request.user, date_user),
     }
