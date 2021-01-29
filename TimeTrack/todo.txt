@@ -91,4 +91,6 @@ Show what the user has done a certain month
 9) 
 
 Make a globally available active entry functions
+Add buttons in the menu for tracking time
+Create api functions for starting, stopping and discarding time
 

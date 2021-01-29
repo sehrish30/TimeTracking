@@ -151,11 +151,56 @@
         delimiters: ['[[', ']]'],
         methods: {
           startTimer(){
+           fetch('/dashborad/projects/api/start_timer/', {
+             method: 'POST',
+             headers: {
+               'Content-Type':'application/json',
+               'X-CSRFToken': '{{ csrf_token }}'
+             }
+           }).then((response) => {
+                return response.json()
+           }).then((result) => {
+             this.startTime = new Date()
+             this.trackingTime =true
 
+             this.timer = setInterval(() => {
+               this.seconds = (new Date() - this.startTime) / 1000
+             }, 1000)
+           })
           },
           stopTimer(){
+            fetch('/dashborad/projects/api/stop_timer/', {
+             method: 'POST',
+             headers: {
+               'Content-Type':'application/json',
+               'X-CSRFToken': '{{ csrf_token }}'
+             }
+           }).then((response) => {
+                return response.json()
+           }).then((result) => {
+              this.entryID = result.entryID
+              this.showTrackingModal = true
+              this.trackingTime = false
 
+              window.clearTimeout(this.timer)
+           })
           }
+        },
+        discardTimer(){
+           fetch('/dashborad/projects/api/discard_timer/', {
+             method: 'POST',
+             headers: {
+               'Content-Type':'application/json',
+               'X-CSRFToken': '{{ csrf_token }}'
+             }
+           }).then((response) => {
+             this.seconds = 0
+             this.showTrackingModal = false
+           })
+        },
+        addLater(){
+           this.seconds = 0
+           this.showTrackingModal = false
         },
        mounted() {
           if (this.seconds !== 0) {
