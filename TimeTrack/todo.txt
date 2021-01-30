@@ -97,3 +97,11 @@ Create Vue functionalities for choosing what to done
 Add modal for choosing what to do 
 Show untracked entries on dashboard
 
+10)
+
+Create a new model for plans and update the team model
+Create new page for showing plans
+Add plans to the database
+Change the project.html file to implement limits
+Change the project.html to implement limits
+Change the invite.html file to implement limits
