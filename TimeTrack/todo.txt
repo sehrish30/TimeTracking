@@ -105,3 +105,10 @@ Add plans to the database
 Change the project.html file to implement limits
 Change the projects.html to implement limits
 Change the invite.html file to implement limits
+
+11)
+
+Setup Stripe, Install Stripe
+Run the stripe CLI
+Create API functions for stripe
+Update the plans page view

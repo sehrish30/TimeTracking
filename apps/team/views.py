@@ -1,14 +1,16 @@
 # import python
 from apps.team.utilities import send_invitation
 import random
+import stripe
 
 # import django
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 # Create your views here.
-from .models import Team, Invitation
+from .models import Team, Invitation, Plan
 
 # import helpers
 from .utilities import send_invitation
@@ -110,9 +112,26 @@ def invite(request):
 def plans(request):
     team = get_object_or_404(
         Team, pk=request.user.userprofile.active_team_id, status=Team.ACTIVE)
+    error = ''
+
+    if request.GET.get('cancel_plan', ''):
+        try:
+            plan_default = Plan.objects.get(is_default=True)
+
+            team.plan = plan_default
+            team.plan_status = Team.PLAN_CANCELLED
+            team.save()
+
+            # cancel subscription
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            stripe.Subscription.delete(team.stripe_subscription_id)
+        except Exception:
+            error = 'Something went wrong with the cancellation. Please try again!'
 
     context = {
         'team': team,
+        'error': error,
+        'stripe_pub_key': settings.STRIPE_PUBLISHABLE_KEY
     }
 
     return render(request, 'team/plans.html', context)
