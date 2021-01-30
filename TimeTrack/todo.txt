@@ -103,5 +103,5 @@ Create a new model for plans and update the team model
 Create new page for showing plans
 Add plans to the database
 Change the project.html file to implement limits
-Change the project.html to implement limits
+Change the projects.html to implement limits
 Change the invite.html file to implement limits
