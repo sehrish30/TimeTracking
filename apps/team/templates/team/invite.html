@@ -19,35 +19,43 @@
 </nav>
 
 <div class="columns is-multiline" id="invite-app">
-  <div class="column is-8">
-    <h1 class="title">Invite member</h1>
-  </div>
+      <div class="column is-4">
+          <h1 class="title">Invite member</h1>
 
-  <div class="column is-6">
-      {% comment %} No validate because donot want to do browser's validation {% endcomment %}
-    <form method="post" action="." @submit="validateForm" novalidate>
-        {% csrf_token %}
+          <div class="notification is-danger" v-if="errors.length">
+              <p v-for="error in errors">[[ error ]]</p>
+          </div>
 
-        
-        <div class="notification is-danger" v-if="errors.length">
-           <p v-for="error in errors">[[ error ]]</p>
-        </div>
+          {% if team.plan.max_members_per_team > team.members.count %}
+              <form method="post" action="." @submit="validateForm" novalite>
+                  {% csrf_token %}
 
-        <div class="field">
-            <label>Email</label>
+                  <div class="field">
+                      <label>E-mail</label>
 
-            <div class="control">
-            <input type="email" name="email" id="id_email" v-model="email" class="input"/>
-            </div>
-        </div>
+                      <div class="control">
+                          <input type="email" name="email" id="id_email" v-model="email" class="input">
+                      </div>
+                  </div>
 
-        <div class="field">
-            <div class="control">
-            <button class="button is-info">Send invitation</button>
-            </div>
-        </div>
-    </form>
-  </div>
+                  <div class="field">
+                      <div class="control">
+                          <button class="button is-success">Send invitation</button>
+                      </div>
+                  </div>
+              </form>
+          {% else %}
+              <div class="notification is-warning">
+                  This team has reached the limit of members.<br>
+
+                  {% if team.created_by == request.user %}
+                      <a href="{% url 'team:plans' %}">Upgrade plan</a>
+                  {% else %}
+                      Contact your team owner...
+                  {% endif %}
+              </div>
+          {% endif %}
+    </div>
 </div>
 
 
