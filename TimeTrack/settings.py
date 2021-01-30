@@ -37,12 +37,20 @@ EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 DEFAULT_EMAIL_FROM = 'sehrishwaheed30@gmail.com'
 
-ACCEPTATION_URL = 'http://127.0.0.1:8000/signup/'
+WEBSITE_URL = 'http://127.0.0.1:8000'
+ACCEPTATION_URL = WEBSITE_URL + '/signup/'
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 ALLOWED_HOSTS = []
 
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51HSUY0AdvemoYxG9xgzcDDUzNF3YrhNkBrTtIaBHDta61z9MAPfQ4uXzj0OWGrL30p2bYM6nkSmoqfAUjec2BRlw00WMx5fgtF'
+STRIPE_SECRET_KEY = 'sk_test_51HSUY0AdvemoYxG9pNxwFUdSvEgdTi3jHDOX9GiGmnImdfUgIjn4h12tYMF7El6ZiI3lJ6SpUgxiUIgOaKCiXFnu00XGn6UMys'
+STRIPE_BASIC_PRICE_ID = 'price_1IFK8FAdvemoYxG960w1nlDI'
+STRIPE_PRO_PRICE_ID = 'price_1IFK8yAdvemoYxG9i2gllQx8'
+
+# stripe listen --forward-to localhost:8000/dashboard/myaccount/teams/api/stripe_webhook/
+STRIPE_WEBHOOK_KEY = 'whsec_JGqspg3q54zRAREE2RPsmtlYCdMyWXFf'
 
 # Application definition
 
