@@ -24,7 +24,8 @@
     <h1 class="title">{{ team.title }}</h1>
 
     {% if request.user == team.created_by %}
-      <a href="{% url 'team:invite' %}" class="button is-primary">Invite users</a>
+      <a href="{% url 'team:invite' %}" class="button is-primary"><i class="icon-new fas fa-retweet"></i>Invite users</a>
+      <a href="{% url 'team:plans' %}" class="button is-primary is-outlined"><i class="icon-new fas fa-exchange-alt"></i>Change Plan</a>
     {% endif %}
 
     <hr>
