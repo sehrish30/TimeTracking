@@ -157,7 +157,7 @@ def plans_thankyou(request):
         team.plan_end_date = datetime.fromtimestamp(
             subscription.current_period_end)
 
-        # team plabe to whatever comes from stripe
+        # team plan to whatever comes from stripe(this name is of product in stripe we created)
         team.plan = Plan.objects.get(title=product.name)
         team.save()
     except Exception:

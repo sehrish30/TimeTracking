@@ -10,18 +10,20 @@
   <ul>
     <li><a href="#">Dashboard</a></li>
     {% comment %} team.id is primary key sending to  teams page to show details {% endcomment %}
-    <li><a href="{% url 'team:team' team.id %}">{{ team.title }}</a></li>
-    <li>
-      <a class="is-active" href="{% url 'edit_profile' %}" aria-current="page"
-        >Edit Profile</a
-      >
-    </li>
+    <li class="is-active"><a href="{% url 'team:team' team.id %}">{{ team.title }}</a></li>
   </ul>
 </nav>
 
 <div class="columns is-multiline" id="team-app">
   <div class="column is-8">
     <h1 class="title">{{ team.title }}</h1>
+
+    <div class="mb-3">
+     <p><strong>Current plan: </strong>{{ team.plan.title }}</p>
+      {% if team.plan.title != 'Free' %}
+                <p><strong>Plan end date: </strong>{{ team.plan_end_date|date:"Y-m-d" }}{% if team.plan_status == 'active' %} (auto renewing){% endif %}</p>
+      {% endif %}
+    </div>
 
     {% if request.user == team.created_by %}
       <a href="{% url 'team:invite' %}" class="button is-primary"><i class="icon-new fas fa-retweet"></i>Invite users</a>

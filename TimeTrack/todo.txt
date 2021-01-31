@@ -113,3 +113,4 @@ Run the stripe CLI
 Create API functions for stripe
 Update the plans page view
 Create thank you page
+show current plan on team page

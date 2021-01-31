@@ -129,19 +129,47 @@
 {% block scripts %}
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-      const PlansApp = {
-        data(){
-          return {
+        const PlansApp = {
+            data() {
+                return {
+                }
+            },
+            delimiters: ['[[', ']]'],
+            methods: {
+                subscribe(plan) {
+                    console.log('Subscribe:', plan);
 
-          }
-        },
-        delimiters: ['[[', ']]'],
-        methods : {
-          subscribe(plan){
-            console.log(plan)
-          }
+                    const stripe = Stripe('{{ stripe_pub_key }}');
+
+                    fetch('/dashboard/myaccount/teams/api/create_checkout_session/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({
+                            'plan': plan
+                        })
+                    })
+                    .then(function(response) {
+                        return response.json()
+                    })
+                    .then(function(session) {
+                        console.log(session)
+                        return stripe.redirectToCheckout({ sessionId: session.sessionId })
+                    })
+                    .then(function(result) {
+                        if (result.error) {
+                            console.log('Error:', result.error.message)
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error:', error);
+                    });
+                }
+            }
         }
-      }
-      Vue.createApp(PlansApp).mount('#plans-app')
+
+        Vue.createApp(PlansApp).mount('#plans-app')
     </script>
 {% endblock %}
