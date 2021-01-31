@@ -1,5 +1,6 @@
 # Import Python packages
 
+
 from apps.team.models import Team, Plan
 from django.conf import settings
 import django
@@ -16,7 +17,6 @@ django.setup()
 
 # Import models
 
-
 # Init Stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -27,6 +27,7 @@ for team in Team.objects.all():
     sub = stripe.Subscription.retrieve(team.stripe_subscription_id)
 
     if sub.status == 'canceled':
+        # set plan back to default
         plan_default = Plan.objects.get(is_default=True)
 
         team.plan = plan_default
